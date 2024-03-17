@@ -8,7 +8,12 @@ const App = () => {
         <div>
             Bienvenido a la app de comercio electronico
             <button className="btn btn-primary"> Boton </button>
+            A ver que pendejada ponemos aqui
+            <div>
+                Pero ponemos una pendejada mas grande aca
+            </div>
         </div>
+
     );
 };
 
