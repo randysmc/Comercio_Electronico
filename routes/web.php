@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,10 @@ use Spatie\Permission\Models\Role;
 */
 
 //Creamos roles
-#$role = Role::create(['name' => 'admin']);
-#$role = Role::create(['name' => 'vendedor']);
-#$role = Role::create(['name' => 'comprador']);
-#$role = Role::create(['name' => 'voluntario']);
+//$role = Role::create(['name' => 'admin']);
+//$role = Role::create(['name' => 'vendedor']);
+//$role = Role::create(['name' => 'comprador']);
+//$role = Role::create(['name' => 'voluntario']);
 
 
 Route::get('{any}', function () {
