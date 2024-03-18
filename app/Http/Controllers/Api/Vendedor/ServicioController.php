@@ -27,5 +27,5 @@ class ServicioController extends Controller
     public function destroy($id){
         
     }
-}
+
 }

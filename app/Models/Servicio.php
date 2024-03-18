@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Servicio extends Model
 {
     use HasFactory;
-    protected $guatded = [];
+    protected $guarded = [];
+    public $timestamps = false;
 
     public function categoria(): BelongsTo
     {
