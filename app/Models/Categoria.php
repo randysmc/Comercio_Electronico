@@ -9,7 +9,7 @@ class Categoria extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public $timestamp = false;
+    public $timestamps = false;
 
     public function productos()
     {
