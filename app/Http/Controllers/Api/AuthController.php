@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class AuthController extends Controller
@@ -70,5 +71,17 @@ class AuthController extends Controller
         }
 
         return response()->json($response, 200);
+    }
+
+    public function logout(Request $request)
+    {
+        //revocar un token
+        $response = ["success"=>false];
+        auth()->user()->tokens()->delete();
+        $response = [
+            "success"=>true,
+            "message"=> "Sesión cerrada"
+        ];
+        return response()->json($response,200);
     }
 }
