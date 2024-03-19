@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Admin\ServicioController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\FrontController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\Vendedor\ProductoController as ProductoVendedor;
 use App\Http\Controllers\Api\Vendedor\ServicioController as ServicioVendedor;
 use App\Models\Servicio;
@@ -28,6 +29,8 @@ Route::prefix('v1')->group(function(){
     //::public
 
     Route::get('/public/{slug}', [FrontController::class,'categoria']);
+    Route::get('/roles', [RoleController::class, 'getRoles']);
+    
     //::auth
     Route::post('/auth/register', [AuthController::class,'register']);
     Route::post('/auth/login', [AuthController::class,'login']);
