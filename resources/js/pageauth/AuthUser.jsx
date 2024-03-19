@@ -27,9 +27,9 @@ const AuthUser = () => {
     const [rol, setRol] = useState(getRol());
 
     const saveToken = (user, token, rol) => {
-        sessionStorage.setItem("user", JSON.stringify(user));
-        sessionStorage.setItem("token", JSON.stringify(token));
-        sessionStorage.setItem("rol", JSON.stringify(rol));
+        sessionStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('token', JSON.stringify(token));
+        sessionStorage.setItem('rol', JSON.stringify(rol));
 
         setUser(user);
         setToken(token);
@@ -37,16 +37,16 @@ const AuthUser = () => {
 
         //rol: admin | comprador | vendedor | voluntario
 
-        if (getRol() == "admin") navigate("/admin");
+        if (getRol() === "admin") navigate("/admin");
 
-        if (getRol() == "vendedor") navigate("/vendedor");
+        if (getRol() === "vendedor") navigate("/vendedor");
 
-        if (getRol() == "comprador") navigate("/comprador");
+        if (getRol() === "comprador") navigate("/comprador");
 
-        if (getRol() == "voluntario") navigate("/voluntario");
+        if (getRol() === "voluntario") navigate("/voluntario");
     };
 
-    const getLogout = ()=>{
+    const getLogout = () =>{
         sessionStorage.clear()
         navigate('/')
     }

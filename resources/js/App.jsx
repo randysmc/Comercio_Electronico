@@ -9,11 +9,16 @@ import LayoutVendedor from "./layouts/LayoutVendedor";
 import LayoutVisitante from "./layouts/LayoutVisitante";
 
 import PageHome from "./pagepublic/PageHome";
+import Panel from "./pageadmin/PanelAdmin"
 import ProtectedRoutes from "./pageauth/ProtectedRoutes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from "./pageauth/Login";
 import Register from "./pageauth/Register";
+import PanelAdmin from "./pageadmin/PanelAdmin";
+import PanelComprador from "./pagecomprador/PanelComprador";
+import PanelVendedor from "./pagevendedor/PanelVendedor";
+import PanelVisitante from "./pagevisitante/PanelVisitante";
 //import '../css/app.css'
 
 const App = () => {
@@ -23,28 +28,26 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<LayoutPublic />}>
                         <Route index element={<PageHome />} />
-                        <Route path='/login' element={<Login/>}/>
-                        <Route path='/register' element={<Register/>}/>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
                     </Route>
 
                     <Route element={<ProtectedRoutes />}>
-
                         <Route path="/admin" element={<LayoutAdmin />}>
-                            <Route index element={<PageHome />} />
+                            <Route index element={<PanelAdmin/>} />
                         </Route>
 
                         <Route path="/vendedor" element={<LayoutVendedor />}>
-                            <Route index element={<PageHome />} />
+                            <Route index element={< PanelVendedor/>} />
                         </Route>
 
                         <Route path="/comprador" element={<LayoutComprador />}>
-                            <Route index element={<PageHome />} />
+                            <Route index element={<PanelComprador />} />
                         </Route>
 
                         <Route path="/visitante" element={<LayoutVisitante />}>
-                            <Route index element={<PageHome />} />
+                            <Route index element={<PanelVisitante />} />
                         </Route>
-
                     </Route>
                 </Routes>
             </Router>

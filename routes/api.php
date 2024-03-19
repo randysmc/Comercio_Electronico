@@ -31,10 +31,11 @@ Route::prefix('v1')->group(function(){
     Route::get('/public/{slug}', [FrontController::class,'categoria']);
     Route::get('/roles', [RoleController::class, 'getRoles']);
     
+    
     //::auth
     Route::post('/auth/register', [AuthController::class,'register']);
     Route::post('/auth/login', [AuthController::class,'login']);
-
+    
     //RUTAS PRIVADAS
     //Necesitan un token para poder funcionar
     Route::group(['middleware' => 'auth:sanctum'], function() {
@@ -64,6 +65,10 @@ Route::prefix('v1')->group(function(){
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+
 
 //vamos a tener dos tipos de rutas
 //publicas y privadas

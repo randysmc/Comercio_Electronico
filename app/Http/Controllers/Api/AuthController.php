@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+//use Laravel\Sanctum\HasApiTokens;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+//use Laravel\Passport\HasApiTokens;
 
 class AuthController extends Controller
 {
@@ -73,24 +75,33 @@ class AuthController extends Controller
             $user->hasRole('comprador');
             //Envia token al frontedn
             $response["token"] = $user->createToken("nacho")->plainTextToken;
+            
 
             //envia al usuario
             $response['user'] = $user;
+            $response['message'] = "Logueado";
             $response['success'] = true;
         }
 
         return response()->json($response, 200);
     }
 
+
     public function logout(Request $request)
     {
-        //revocar un token
-        $response = ["success" => false];
-        auth()->user()->tokens()->delete();
-        $response = [
-            "success" => true,
-            "message" => "Sesión cerrada"
-        ];
-        return response()->json($response, 200);
+        if (auth()->check()) {
+            auth()->user()->tokens()->delete();
+            $response = [
+                "success" => true,
+                "message" => "Sesión cerrada"
+            ];
+            return response()->json($response, 200);
+        } else {
+            $response = [
+                "success" => false,
+                "message" => "No hay una sesión activa para cerrar"
+            ];
+            return response()->json($response, 401);
+        }
     }
 }

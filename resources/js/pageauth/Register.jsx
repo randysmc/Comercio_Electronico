@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Config from "../Config";
+import AuthUser from "./AuthUser";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Register = () => {
+    const { getToken } = AuthUser()
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+
     const [selectedRole, setSelectedRole] = useState("");
     const [roles, setRoles] = useState([]);
+    
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(getToken()){
+            navigate("/")
+        }
+    },[])
 
     //Obtenemos los roles:
     useEffect(() => {
@@ -38,8 +51,10 @@ const Register = () => {
         // Realizar solicitud de registro
         Config.getRegister(userData)
             .then(({ data }) => {
-                console.log(data);
-                // Aquí podrías redirigir al usuario a la página de inicio de sesión, por ejemplo
+                //console.log(data);
+                if(data.success){
+                    navigate("/login")
+                }
             })
             .catch(error => {
                 console.error("Error al registrar usuario:", error);

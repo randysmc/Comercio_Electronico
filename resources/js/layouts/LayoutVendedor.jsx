@@ -11,7 +11,7 @@ const LayoutVendedor = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (getRol != "vendedor") {
+        if (getRol() != "vendedor") {
             navigate("/");
         }
     }, []);

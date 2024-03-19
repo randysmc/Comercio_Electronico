@@ -12,7 +12,7 @@ const LayoutComprador = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (getRol != "comprador") {
+        if (getRol() != "comprador") {
             navigate("/");
         }
     }, []);
