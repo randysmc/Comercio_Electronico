@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->boolean('menu')->default(0);
             $table->integer('orden')->default(1);
+            $table->string('urlfoto')->nullable();
         });
     }
 

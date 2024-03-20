@@ -9,7 +9,6 @@ import LayoutVendedor from "./layouts/LayoutVendedor";
 import LayoutVisitante from "./layouts/LayoutVisitante";
 
 import PageHome from "./pagepublic/PageHome";
-import Panel from "./pageadmin/PanelAdmin"
 import ProtectedRoutes from "./pageauth/ProtectedRoutes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -19,6 +18,10 @@ import PanelAdmin from "./pageadmin/PanelAdmin";
 import PanelComprador from "./pagecomprador/PanelComprador";
 import PanelVendedor from "./pagevendedor/PanelVendedor";
 import PanelVisitante from "./pagevisitante/PanelVisitante";
+import UserAll from "./pageadmin/UserAll";
+import UserUpdate from "./pageadmin/UserUpdate";
+import CategoriaAll from "./pageadmin/CategoriaAll";
+import CategoriaStore from "./pageadmin/CategoriaStore";
 //import '../css/app.css'
 
 const App = () => {
@@ -35,6 +38,11 @@ const App = () => {
                     <Route element={<ProtectedRoutes />}>
                         <Route path="/admin" element={<LayoutAdmin />}>
                             <Route index element={<PanelAdmin/>} />
+                            <Route path="user" element={<UserAll />}></Route>
+                            <Route path="user/edit/:id" element={<UserUpdate />}></Route>
+                            <Route path="categoria/create" element={<CategoriaStore/>}></Route>
+                            <Route path="categoria" element={<CategoriaAll />}></Route>
+                            
                         </Route>
 
                         <Route path="/vendedor" element={<LayoutVendedor />}>
@@ -61,8 +69,8 @@ if (document.getElementById("root")) {
     const Index = ReactDOM.createRoot(document.getElementById("root"));
 
     Index.render(
-        <React.StrictMode>
+
             <App />
-        </React.StrictMode>
+
     );
 }

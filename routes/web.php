@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Creamos roles
-#$role = Role::create(['name' => 'admin']);
-#$role = Role::create(['name' => 'vendedor']);
-#$role = Role::create(['name' => 'comprador']);
-#$role = Role::create(['name' => 'voluntario']);
+//$role = Role::create(['name' => 'admin']);
+//$role = Role::create(['name' => 'vendedor']);
+//$role = Role::create(['name' => 'comprador']);
+//$role = Role::create(['name' => 'visitante']);
 
 
 Route::get('{any}', function () {

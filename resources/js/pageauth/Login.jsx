@@ -11,6 +11,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const storeToken = getToken();
         if (getToken()) {
             navigate("/");
         }
@@ -23,12 +24,15 @@ const Login = () => {
             Config.getLogin({email, password})
             .then((data) => {
                 if(data.data.success){
-                    console.log(data)
+                    console.log("Token recuperado", data.data.token)
+                    sessionStorage.setItem('token', data.data.token);
                     setToken(
                         data.data.user,
                         data.data.token,
                         data.data.user.roles[0].name
-                    )
+                    );
+                    console.log("Token enviado al backend:", data.data.token);
+                    //sessionStorage.setItem('token',data.data.token);
                 }else{
                     setMessage(data.data.message)
                 }

@@ -24,42 +24,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('v1')->group(function(){
+Route::prefix('v1')->group(function () {
     //RUTAS PUBLICAS
     //::public
 
-    Route::get('/public/{slug}', [FrontController::class,'categoria']);
+    Route::get('/public/{slug}', [FrontController::class, 'categoria']);
     Route::get('/roles', [RoleController::class, 'getRoles']);
-    
-    
+    //::rol admin
+    //Route::apiResource('/admin/producto', ProductoController::class);
+    //Route::apiResource('/admin/servicio', ServicioController::class);
+    Route::apiResource('/admin/categoria', CategoriaController::class);
+    Route::apiResource('/admin/user', UserController::class);
+
     //::auth
-    Route::post('/auth/register', [AuthController::class,'register']);
-    Route::post('/auth/login', [AuthController::class,'login']);
-    
+    Route::post('/auth/register', [AuthController::class, 'register']);
+    Route::post('/auth/login', [AuthController::class, 'login']);
+
+
     //RUTAS PRIVADAS
     //Necesitan un token para poder funcionar
-    Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::group(['middleware' => 'auth:sanctum'], function () {
         //::auth
-        Route::post('/auth/logout', [AuthController::class,'logout']);
-        
-        //::rol admin
-        Route::apiResource('/admin/producto',ProductoController::class);
-        Route::apiResource('/admin/servicio',ServicioController::class);
-        Route::apiResource('/admin/user',UserController::class);
-        Route::apiResource('/admin/categoria', CategoriaController::class);
+        Route::post('/auth/logout', [AuthController::class, 'logout']);
+
 
         //::rol comprador
 
 
         //::rol vendedor
-        Route::apiResource('/vendedor/producto',ProductoVendedor::class);
-        Route::apiResource('/vendedor/servicio',ServicioVendedor::class);
+        Route::apiResource('/vendedor/producto', ProductoVendedor::class);
+        Route::apiResource('/vendedor/servicio', ServicioVendedor::class);
 
         //::rol voluntario
 
     });
-
-
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -72,4 +70,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //vamos a tener dos tipos de rutas
 //publicas y privadas
-

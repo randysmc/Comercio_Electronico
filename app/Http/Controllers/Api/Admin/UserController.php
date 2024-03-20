@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Psy\Readline\Hoa\Console;
 
 class UserController extends Controller
 {
     //Me muestra todos los usuarios
     public function index(){
+        
         $data = User::all();
+        
         return response()->json($data, 200);
     }
 
@@ -30,5 +33,9 @@ class UserController extends Controller
         $data-> save();
 
         return response()->json($data, 200);
+    }
+
+    public function store(Request $request){
+        
     }
 }

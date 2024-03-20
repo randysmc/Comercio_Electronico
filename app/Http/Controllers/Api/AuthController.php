@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-//use Laravel\Sanctum\HasApiTokens;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
-//use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class AuthController extends Controller
 {
@@ -34,7 +35,7 @@ class AuthController extends Controller
     
         // Crear el usuario
         $user = User::create($input);
-    
+        
         // Asignar el rol al usuario según el número proporcionado
         $roleId = $request->input('role');
         $role = Role::find($roleId);
@@ -46,11 +47,12 @@ class AuthController extends Controller
         }
     
         $response["success"] = true;
+        
         $response["token"] = $user->createToken("nacho")->plainTextToken;
     
         return response()->json($response, 200);
     }
-    
+
 
     public function login(Request $request)
     {
@@ -59,7 +61,6 @@ class AuthController extends Controller
 
         //validacion
         $validator = Validator::make($request->all(), [
-            //'name'=>'required',
             'email' => 'required|email',
             'password' => 'required',
         ]);
@@ -72,9 +73,11 @@ class AuthController extends Controller
         //autenticación
         if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = auth()->user();
+
+            //dd($user);
             $user->hasRole('comprador');
-            //Envia token al frontedn
-            $response["token"] = $user->createToken("nacho")->plainTextToken;
+            //Envia token al front
+            $response['token'] = $user->createToken("nacho")->plainTextToken;
             
 
             //envia al usuario
@@ -86,22 +89,14 @@ class AuthController extends Controller
         return response()->json($response, 200);
     }
 
-
-    public function logout(Request $request)
-    {
-        if (auth()->check()) {
-            auth()->user()->tokens()->delete();
-            $response = [
-                "success" => true,
-                "message" => "Sesión cerrada"
-            ];
-            return response()->json($response, 200);
-        } else {
-            $response = [
-                "success" => false,
-                "message" => "No hay una sesión activa para cerrar"
-            ];
-            return response()->json($response, 401);
-        }
+    public function logout(){
+        $response= ['success=> false'];
+        auth()->user()->tokens()->delete();
+        $response=[
+            "success" => true,
+            "message" => "Sesión cerrada"
+        ];
+        return response()->json($response, 200);
     }
+
 }

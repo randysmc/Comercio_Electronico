@@ -10,8 +10,18 @@ export default{
     getLogin:(data)=>axios.post(`${base_api_url}/auth/login`, data),
     getLogout: () => axios.post(`${base_api_url}/auth/logout`), // No hay argumentos
     
- 
-    getRoles: () => axios.get(`${base_api_url}/roles`)
+    getRoles: () => axios.get(`${base_api_url}/roles`),
 
+    //ADMIN
+
+    //User
+    getUserAll:()=>axios.get(`${base_api_url}/admin/user`),
+    getUserById:(id)=>axios.get(`${base_api_url}/admin/user/${id}`),
+    getUserUpdate:(data,id)=>axios.put(`${base_api_url}/admin/user/${id}`, data),
+
+    //Categorias
+    getCategoriaAll:()=>axios.get(`${base_api_url}/admin/categoria`),
+    getCategoriaStore:(data)=>axios.post(`${base_api_url}/admin/categoria`, data),
+    getCategoriaUpdate:(data,id)=>axios.put(`${base_api_url}/admin/categoria/${id}`, data),
 
 }
