@@ -20,7 +20,7 @@ const Login = () => {
     const submitLogin = async (e) => {
         e.preventDefault();
 
-        //await axios.get('/sanctum/csrf-cookie').then((response) => {
+        await axios.get('/sanctum/csrf-cookie').then((response) => {
             Config.getLogin({email, password})
             .then((data) => {
                 if(data.data.success){
@@ -37,7 +37,7 @@ const Login = () => {
                     setMessage(data.data.message)
                 }
             })
-        //})
+        })
       };
       
 

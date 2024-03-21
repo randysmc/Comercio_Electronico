@@ -19,7 +19,7 @@ class ProductoController extends Controller
     public function store(Request $request){
         $data = new Producto(($request->all()));
         
-        $data->user()->associate(Auth::user());
+        //$data->user()->associate(Auth::user());
 
         if ($request->urlfoto) {
             $img = $request->urlfoto;

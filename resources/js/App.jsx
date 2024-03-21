@@ -49,7 +49,7 @@ const App = () => {
 
                         <Route path="/vendedor" element={<LayoutVendedor />}>
                             <Route index element={< PanelVendedor/>} />
-                            <Route path=":id" element={<PerfilVendedor/>}/>
+                            <Route path="profile" element={<PerfilVendedor/>}/>
 
                             <Route path="producto" element={<ProductosVendedor/>}></Route>
                             <Route path="producto/create" element={<ProducStore/>}></Route>

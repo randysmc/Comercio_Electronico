@@ -56,10 +56,6 @@ Route::prefix('v1')->group(function () {
         //::rol comprador
 
 
-        //::rol vendedor
-        Route::apiResource('/vendedor/producto', ProductoVendedor::class);
-        Route::apiResource('/vendedor/servicio', ServicioVendedor::class);
-
         //::rol voluntario
 
     });
