@@ -14,14 +14,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from "./pageauth/Login";
 import Register from "./pageauth/Register";
-import PanelAdmin from "./pageadmin/PanelAdmin";
+
 import PanelComprador from "./pagecomprador/PanelComprador";
-import PanelVendedor from "./pagevendedor/PanelVendedor";
 import PanelVisitante from "./pagevisitante/PanelVisitante";
-import UserAll from "./pageadmin/UserAll";
-import UserUpdate from "./pageadmin/UserUpdate";
-import CategoriaAll from "./pageadmin/CategoriaAll";
-import CategoriaStore from "./pageadmin/CategoriaStore";
+
+import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate } from "./pageadmin";
+
+import {PanelVendedor, PerfilVendedor, ProductosVendedor,ProducStore, ServicioStore, ServiciosVendedor} from "./pagevendedor"
+
 //import '../css/app.css'
 
 const App = () => {
@@ -40,13 +40,26 @@ const App = () => {
                             <Route index element={<PanelAdmin/>} />
                             <Route path="user" element={<UserAll />}></Route>
                             <Route path="user/edit/:id" element={<UserUpdate />}></Route>
-                            <Route path="categoria/create" element={<CategoriaStore/>}></Route>
+
                             <Route path="categoria" element={<CategoriaAll />}></Route>
+                            <Route path="categoria/create" element={<CategoriaStore/>}></Route>
+                            
                             
                         </Route>
 
                         <Route path="/vendedor" element={<LayoutVendedor />}>
                             <Route index element={< PanelVendedor/>} />
+                            <Route path=":id" element={<PerfilVendedor/>}/>
+
+                            <Route path="producto" element={<ProductosVendedor/>}></Route>
+                            <Route path="producto/create" element={<ProducStore/>}></Route>
+
+                            <Route path="servicio" element={<ServicioStore/>}></Route>
+                            <Route path="servicio/create" element={<ServiciosVendedor/>}></Route>
+
+                            
+
+                            
                         </Route>
 
                         <Route path="/comprador" element={<LayoutComprador />}>

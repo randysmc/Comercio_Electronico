@@ -7,7 +7,7 @@ const Navbar = () => {
   const {getRol, getLogout, getToken} = AuthUser()
 
   const logoutUser = () => {
-    Config.getLogout('logout')
+    Config.getLogout('/logout')
     .then(response => {
       console.log(response)
       getLogout()
@@ -26,7 +26,7 @@ const Navbar = () => {
       return(
         <>
           <li className="nav-item">
-            <a className="nav-link" href={`/${getRol()}`} >Administración</a>
+            <a className="nav-link" href={`/${getRol()}`} >Acciones</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#" onClick={logoutUser}>Logout</a>

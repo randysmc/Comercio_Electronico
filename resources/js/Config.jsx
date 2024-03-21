@@ -24,4 +24,13 @@ export default{
     getCategoriaStore:(data)=>axios.post(`${base_api_url}/admin/categoria`, data),
     getCategoriaUpdate:(data,id)=>axios.put(`${base_api_url}/admin/categoria/${id}`, data),
 
+
+    //VENDEDOR
+    //Vendedor-Productos
+    getProductosAll:()=>axios.get(`${base_api_url}/vendedor/producto`),
+    getProductosById:(id)=>axios.get(`${base_api_url}/vendedor/producto/${id}`),
+    getProductoStore:(data)=>axios.post(`${base_api_url}/vendedor/producto`,data),
+    getProductoUpdate:(data)=>axios.update(`${base_api_url}/vendedor/producto/${id}`, data),
+    //getProductoDelete:(id)=>axios.delete(`${base_api_url}/vendedor/producto`)
+
 }

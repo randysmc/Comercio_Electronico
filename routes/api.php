@@ -30,6 +30,7 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/public/{slug}', [FrontController::class, 'categoria']);
     Route::get('/roles', [RoleController::class, 'getRoles']);
+    
     //::rol admin
     //Route::apiResource('/admin/producto', ProductoController::class);
     //Route::apiResource('/admin/servicio', ServicioController::class);
@@ -39,6 +40,10 @@ Route::prefix('v1')->group(function () {
     //::auth
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/login', [AuthController::class, 'login']);
+
+    //Vendedor
+    Route::apiResource('/vendedor/producto', ProductoVendedor::class);
+    Route::apiResource('/vendedor/servicio', ServicioVendedor::class);
 
 
     //RUTAS PRIVADAS
