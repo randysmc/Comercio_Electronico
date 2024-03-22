@@ -19,9 +19,11 @@ class AuthController extends Controller
     
         // Validación
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'username' => 'required|string|unique:users|max:255',
+            'email' => 'required|string|email|unique:users|max:255',
+            'password' => 'required|string|min:8',
             'role' => 'required|integer|between:1,4' // Validar que el valor sea un entero entre 1 y 4
         ]);
     

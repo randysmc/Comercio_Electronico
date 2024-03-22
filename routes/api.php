@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\Vendedor\ProductoController as ProductoVendedor;
 use App\Http\Controllers\Api\Vendedor\ServicioController as ServicioVendedor;
+use App\Http\Controllers\Api\Vendedor\CategoriaController as CategoriaVendedor;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,20 +31,18 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/public/{slug}', [FrontController::class, 'categoria']);
     Route::get('/roles', [RoleController::class, 'getRoles']);
-    
+
     //::rol admin
     //Route::apiResource('/admin/producto', ProductoController::class);
     //Route::apiResource('/admin/servicio', ServicioController::class);
-    Route::apiResource('/admin/categoria', CategoriaController::class);
-    
+
+
 
     //::auth
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/login', [AuthController::class, 'login']);
 
-    //Vendedor
-    Route::apiResource('/vendedor/producto', ProductoVendedor::class);
-    Route::apiResource('/vendedor/servicio', ServicioVendedor::class);
+
 
 
     //RUTAS PRIVADAS
@@ -54,7 +53,12 @@ Route::prefix('v1')->group(function () {
 
         //Admin:
         Route::apiResource('/admin/user', UserController::class);
+        Route::apiResource('/admin/categoria', CategoriaController::class);
 
+        //Vendedor
+        Route::apiResource('/vendedor/producto', ProductoVendedor::class);
+        Route::apiResource('/vendedor/servicio', ServicioVendedor::class);
+        Route::apiResource('/vendedor/categoria', CategoriaVendedor::class);
 
         //::rol comprador
 

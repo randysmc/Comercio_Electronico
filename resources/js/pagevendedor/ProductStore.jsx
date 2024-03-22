@@ -5,7 +5,7 @@ import SidebarVendedor from './SidebarVendedor';
 import AuthUser from '../pageauth/AuthUser';
 
 const ProductStore = () => {
-    const { getUser } = AuthUser();
+    const { getUser, getToken } = AuthUser();
     const user = getUser();
 
     const [nombre, setNombre] = useState('');
@@ -13,16 +13,24 @@ const ProductStore = () => {
     const [precio, setPrecio] = useState('');
     const [urlfoto, setUrlfoto] = useState('');
     const [categoria_id, setCategoriaId] = useState('');
-    const [user_id, setUser] = useState(user.id);
     const [categorias, setCategorias] = useState([]);
+    const [categoriasCargadas, setCategoriasCargadas] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        setUser(user.id);
-        //getCategoriaAll();
-    }, [user]);
+        obtenerCategorias();
+    }, []);
 
-
+    const obtenerCategorias = async () => {
+        try {
+            const response = await Config.getVendedorCategoriaAll(getToken());
+            setCategorias(response.data);
+            setCategoriasCargadas(true);
+        } catch (error) {
+            console.error("Error al obtener categorías:", error);
+            // Manejar el error según sea necesario
+        }
+    };
 
     const handleInputChange = (e) => {
         const files = e.target.files;
@@ -35,8 +43,13 @@ const ProductStore = () => {
 
     const submitStore = async (e) => {
         e.preventDefault();
-        await Config.getProductoStore({ nombre, precio, descripcion, urlfoto, categoria_id, user_id });
-        navigate('vendedor/producto');
+        try {
+            await Config.getProductoStore(getToken(), { nombre, precio, descripcion, urlfoto, categoria_id });
+            navigate('vendedor/producto');
+        } catch (error) {
+            console.error("Error al crear el producto:", error);
+            // Manejar el error según sea necesario
+        }
     };
 
     return (

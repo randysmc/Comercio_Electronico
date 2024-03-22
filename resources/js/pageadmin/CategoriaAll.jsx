@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import Config from '../Config';
 import Sidebar from './Sidebar';
 import { Link } from "react-router-dom";
+import AuthUser from '../pageauth/AuthUser';
 
 const CategoriaAll = () => {
+    const {getToken} = AuthUser();
     const [categorias, setCategoria] = useState();
 
     useEffect(()=>{
         getCategoriaAll();
     },[])
 
+    const token = getToken();
+
     const getCategoriaAll = async() =>{
-        const response = await Config.getCategoriaAll();
+        const response = await Config.getCategoriaAll(token);
         console.log(response.data)
         setCategoria(response.data)
     };

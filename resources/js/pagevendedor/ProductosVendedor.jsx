@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import AuthUser from '../pageauth/AuthUser';
 
 const ProductosVendedor = () => {
-    const { getUser } = AuthUser();
+    const { getUser, getToken } = AuthUser();
     const user = getUser();
     const [products, setProducts] = useState([]);
 
@@ -14,8 +14,8 @@ const ProductosVendedor = () => {
     }, []);
 
     const getProductsByUserId = async () => {
-        const response = await Config.getProductAll();
-        const userProducts = response.data.filter(product => product.user_id === user.id);
+        const response = await Config.getProductAll(getToken());
+        const userProducts = response.data;
 
         setProducts(userProducts);
     };
@@ -27,6 +27,8 @@ const ProductosVendedor = () => {
                 <div className="col-sm-9 mt-3 mb-3">
                     <div className="card">
                         <div className="card-body">
+                        <Link to={'/vendedor/producto/create'} className='btn btn-primary'>Postear Producto</Link>
+                        <Link to={'/vendedor/servicio/create'} className='btn btn-primary'>Solicitar un Servicio</Link>
                             <table className="table">
                                 <thead>
                                     <tr>

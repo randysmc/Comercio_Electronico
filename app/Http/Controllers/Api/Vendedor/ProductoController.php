@@ -12,14 +12,22 @@ class ProductoController extends Controller
 {
     //
     public function index(){
-        $data = Producto::all();
-        return response()->json($data,200);
+        // Obtener el ID del usuario autenticado
+        $userId = Auth::id();
+    
+        // Filtrar los productos por el ID del usuario autenticado
+        $data = Producto::where('user_id', $userId)->get();
+    
+        return response()->json($data, 200);
     }
+
 
     public function store(Request $request){
         $data = new Producto(($request->all()));
         
         //$data->user()->associate(Auth::user());
+        $data->user_id = Auth::id();
+        $data->disponible =1;
 
         if ($request->urlfoto) {
             $img = $request->urlfoto;
@@ -38,6 +46,7 @@ class ProductoController extends Controller
         $data->save();
         return response()->json($data, 200);
     }
+
 
     public function show($id){
         $data = Producto::find($id);

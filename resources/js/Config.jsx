@@ -30,9 +30,13 @@ export default {
     getCategoriaUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/categoria/${id}`, data),
 
     // VENDEDOR
+
     // Vendedor-Productos
     getProductAll: (token) => axiosWithAuth(token).get('/vendedor/producto'),
     getProductById: (token, id) => axiosWithAuth(token).get(`/vendedor/producto/${id}`),
     getProductoStore: (token, data) => axiosWithAuth(token).post('/vendedor/producto', data),
     getProductoUpdate: (token, data, id) => axiosWithAuth(token).put(`/vendedor/producto/${id}`, data),
+
+    //Vendedor-Categoria
+    getVendedorCategoriaAll:(token) => axiosWithAuth(token).get('vendedor/categoria'),
 };

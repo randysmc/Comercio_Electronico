@@ -23,6 +23,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
+        'username',
+        'fecha_nacimiento',
+        'urlfoto',
         'email',
         'password',
         'aprobado'
@@ -46,6 +50,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'fecha_nacimiento' => 'date', // Cast to date type
+        'aprobado' => 'boolean', // Cast to boolean type
     ];
 
 
