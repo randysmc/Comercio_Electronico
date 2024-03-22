@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import Config from '../Config';
-import SidebarVendedor from './SidebarVendedor';
 import { Link } from 'react-router-dom';
 import AuthUser from '../pageauth/AuthUser';
+import Config from '../Config';
+import Sidebar from './Sidebar';
 
-const ProductosVendedor = () => {
+
+const ProductosAll = () => {
     const { getUser } = AuthUser();
     const user = getUser();
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState();
 
     useEffect(() => {
-        getProductsByUserId();
+        getProductsAll();
     }, []);
 
-    const getProductsByUserId = async () => {
-        const response = await Config.getProductAll();
-        const userProducts = response.data.filter(product => product.user_id === user.id);
-
-        setProducts(userProducts);
+    const getProductsAll = async () => {
+        try {
+            const response = await Config.getProductAll();
+            setProducts(response.data);
+        } catch (error) {
+            console.error("Error al obtener productos:", error);
+        }
     };
 
     return (
         <div className="container bg-light">
             <div className="row">
-                <SidebarVendedor />
+                {/* Asumiendo que SidebarVendedor está definido */}
+                <Sidebar />
                 <div className="col-sm-9 mt-3 mb-3">
                     <div className="card">
                         <div className="card-body">
@@ -65,6 +69,6 @@ const ProductosVendedor = () => {
             </div>
         </div>
     );
-};
+}
 
-export default ProductosVendedor;
+export default ProductosAll;

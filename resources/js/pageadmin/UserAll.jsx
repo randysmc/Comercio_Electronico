@@ -2,19 +2,32 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Config from "../Config";
 import { Link } from "react-router-dom";
+import AuthUser from "../pageauth/AuthUser";
 
 
 const UserAll = () => {
     const [users, setUser] = useState();
+    const {getRol, getLogout, getToken} = AuthUser()
 
     useEffect(() => {
         getUserAll();
     }, []);
-
+    
     const getUserAll = async () => {
-        const response = await Config.getUserAll();
-        console.log(response.data)
-        setUser(response.data);
+        const token = getToken();
+        if (!token) {
+            // Manejar el caso en que el token no esté presente
+            console.log("Token no encontrado");
+            return;
+        }
+    
+        try {
+            const response = await Config.getUserAll(token); // Pasa el token a la función getUserAll
+            console.log(response.data);
+            setUser(response.data);
+        } catch (error) {
+            console.error("Error al obtener usuarios:", error);
+        }
     };
     
 

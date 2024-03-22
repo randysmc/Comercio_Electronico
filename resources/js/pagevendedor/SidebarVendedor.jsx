@@ -7,7 +7,7 @@ const SidebarVendedor = () => {
         <div className="col-sm-3 pt-3 pb-3">
             <div className="list-group">
                 
-                <NavLink to={`/vendedor/:id`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")}  >Perfil</NavLink>
+                <NavLink to={`/vendedor/profile`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")}  >Perfil</NavLink>
                 <NavLink to={`/vendedor/producto`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Productos Publicados</NavLink>
                 <NavLink to={`/admin/producto`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Servicios publicados</NavLink>
                 <NavLink to={`/admin/servicio`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Ofertas Recibidas</NavLink>

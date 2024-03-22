@@ -21,7 +21,7 @@ const Login = () => {
         e.preventDefault();
 
         await axios.get('/sanctum/csrf-cookie').then((response) => {
-            Config.getLogin({email, password})
+            Config.getLogin({email, password}, response.data.token)
             .then((data) => {
                 if(data.data.success){
                     console.log("Token recuperado", data.data.token)

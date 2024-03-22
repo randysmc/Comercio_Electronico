@@ -35,7 +35,7 @@ Route::prefix('v1')->group(function () {
     //Route::apiResource('/admin/producto', ProductoController::class);
     //Route::apiResource('/admin/servicio', ServicioController::class);
     Route::apiResource('/admin/categoria', CategoriaController::class);
-    Route::apiResource('/admin/user', UserController::class);
+    
 
     //::auth
     Route::post('/auth/register', [AuthController::class, 'register']);
@@ -51,6 +51,9 @@ Route::prefix('v1')->group(function () {
     Route::group(['middleware' => 'auth:sanctum'], function () {
         //::auth
         Route::post('/auth/logout', [AuthController::class, 'logout']);
+
+        //Admin:
+        Route::apiResource('/admin/user', UserController::class);
 
 
         //::rol comprador

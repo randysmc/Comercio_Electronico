@@ -7,14 +7,16 @@ const Navbar = () => {
   const {getRol, getLogout, getToken} = AuthUser()
 
   const logoutUser = () => {
-    Config.getLogout('/logout')
-    .then(response => {
-      console.log(response)
-      getLogout()
-    }).catch(error => {
-      console.log(error)
-    })
-  }
+    const token = getToken(); // Obtener el token de la función getToken
+    getLogout(token) // Llamar a getLogout y pasar la URL de logout y el token
+        .then(response => {
+            console.log(response);
+            // Realizar cualquier otra acción necesaria después del logout
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
   
   
 

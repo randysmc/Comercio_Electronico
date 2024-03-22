@@ -21,6 +21,8 @@ import PanelVisitante from "./pagevisitante/PanelVisitante";
 import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate } from "./pageadmin";
 
 import {PanelVendedor, PerfilVendedor, ProductosVendedor,ProducStore, ServicioStore, ServiciosVendedor} from "./pagevendedor"
+import ProductosAll from "./pageadmin/ProductosAll";
+import ProductStore from "./pagevendedor/ProductStore";
 
 //import '../css/app.css'
 
@@ -43,6 +45,8 @@ const App = () => {
 
                             <Route path="categoria" element={<CategoriaAll />}></Route>
                             <Route path="categoria/create" element={<CategoriaStore/>}></Route>
+                            <Route path="producto" element={<ProductosAll />}></Route>
+                            <Route path="producto/create" element={<ProductStore/>}></Route>
                             
                             
                         </Route>
