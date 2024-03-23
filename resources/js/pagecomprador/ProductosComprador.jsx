@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import SidebarComprador from './SidebarComprador';
 import AuthUser from '../pageauth/AuthUser';
 import Config from '../Config';
-import SidebarComprador from './PanelComprador';
 import { Link } from 'react-router-dom';
 
 const ProductosComprador = () => {
   const { getToken } = AuthUser();
-  const [products, setProducts] = useState(); // Corregir aquí
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     getProductsAll();
@@ -15,60 +16,64 @@ const ProductosComprador = () => {
   const getProductsAll = async () => {
     const token = getToken();
     if (!token) {
-      // Manejar el caso en que el token no esté presente
       console.log("Token no encontrado");
       return;
     }
 
     try {
       const response = await Config.getCompradorProductosAll(token);
-      console.log(response.data);
       setProducts(response.data);
     } catch (error) {
       console.error("Error al obtener productos:", error);
     }
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProducts = products.filter((product) => {
+    return product.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
   return (
     <div className="container bg-light">
       <div className="row">
         <SidebarComprador />
         <div className="col-sm-9 mt-3 mb-3">
-          <div className="card">
-            <div className="card-body">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {!products ? (
-                    <tr>
-                      <td colSpan="5">Cargando...</td> {/* Aquí movemos el texto dentro de una celda de la tabla */}
-                    </tr>
-                  ) : (
-                    products.map((product) => (
-                      <tr key={product.id}>
-                        <td>{product.nombre}</td>
-                        <td>{product.descripcion}</td>
-                        <td>{product.precio}</td>
-                        <td>
-                          <Link
-                            to={`/admin/user/edit/${product.id}`}
-                            className="btn btn-primary"
-                          >
-                            Editar
-                          </Link>
-                        </td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
+          <div className="row">
+            <div className="col">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Buscar producto por nombre..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
             </div>
+          </div>
+          <div className="row row-cols-1 row-cols-md-3 g-4">
+            {!filteredProducts.length ? (
+              <div className="col">No se encontraron productos.</div>
+            ) : (
+              filteredProducts.map((product) => (
+                <div key={product.id} className="col">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h5 className="card-title">{product.nombre}</h5>
+                      <p className="card-text">{product.descripcion}</p>
+                      <p className="card-text">Precio: ${product.precio}</p>
+                      <Link
+                        to={`/admin/user/edit/${product.id}`}
+                        className="btn btn-primary"
+                      >
+                        Editar
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
