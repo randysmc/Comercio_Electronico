@@ -4,15 +4,14 @@ import Config from "../Config";
 import { Link } from "react-router-dom";
 import AuthUser from "../pageauth/AuthUser";
 
-
 const UserAll = () => {
     const [users, setUser] = useState();
-    const {getRol, getLogout, getToken} = AuthUser()
+    const { getRol, getLogout, getToken } = AuthUser();
 
     useEffect(() => {
         getUserAll();
     }, []);
-    
+
     const getUserAll = async () => {
         const token = getToken();
         if (!token) {
@@ -20,7 +19,7 @@ const UserAll = () => {
             console.log("Token no encontrado");
             return;
         }
-    
+
         try {
             const response = await Config.getUserAll(token); // Pasa el token a la función getUserAll
             console.log(response.data);
@@ -29,7 +28,6 @@ const UserAll = () => {
             console.error("Error al obtener usuarios:", error);
         }
     };
-    
 
     return (
         <div className="container bg-light">
@@ -42,23 +40,28 @@ const UserAll = () => {
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Name</th> <th>Email</th><th>Tipo de usuario</th>
+                                        <th>Name</th> <th>Email</th>
+                                        <th>Tipo de usuario</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {!users ? "...loading" : users.map(
-                                        (user) => {
+                                    {!users
+                                        ? "...loading"
+                                        : users.map((user) => {
                                               return (
-                                                  <tr key ={user.id}>
-                                                    <td>{user.id}</td>
-                                                    <td>{user.name}</td>
-                                                    <td>{user.email}</td>
-                                                    <td>{user.aprobado}</td>
-                                                    <td>
-                                                        <Link to={ `/admin/user/edit/${user.id}`} className="btn btn-primary">Editar </Link>
-                                                    </td>
-                                                    
-
+                                                  <tr key={user.id}>
+                                                      <td>{user.id}</td>
+                                                      <td>{user.name}</td>
+                                                      <td>{user.email}</td>
+                                                      <td>{user.aprobado}</td>
+                                                      <td>
+                                                          <Link
+                                                              to={`/admin/user/edit/${user.id}`}
+                                                              className="btn btn-primary"
+                                                          >
+                                                              Editar
+                                                          </Link>
+                                                      </td>
                                                   </tr>
                                               );
                                           })}

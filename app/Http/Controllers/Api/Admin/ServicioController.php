@@ -13,7 +13,7 @@ class ServicioController extends Controller
     public function index()
     {
         $data = Servicio::all();
-        $data = Servicio::orderBy("orden")->get(["id", "nombre"]);
+        //$data = Servicio::orderBy("orden")->get(["id", "nombre"]);
         return response()->json($data, 200);
     }
 

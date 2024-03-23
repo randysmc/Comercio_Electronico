@@ -8,16 +8,16 @@ const Navbar = () => {
 
   const logoutUser = () => {
     const token = getToken(); // Obtener el token de la función getToken
-    getLogout(token) // Llamar a getLogout y pasar la URL de logout y el token
-        .then(response => {
-            console.log(response);
-            // Realizar cualquier otra acción necesaria después del logout
-        })
-        .catch(error => {
-            console.log(error);
-        });
-};
-  
+    Config.getLogout(token)
+    .then(response => {
+        console.log(response);
+        getLogout(); // Llamar a la función getLogout para borrar el token de sesión almacenado
+    })
+    .catch(error => {
+        console.error("Error al realizar el logout:", error);
+        // Manejar el error según sea necesario
+    });
+}
   
 
   console.log('Token de sesión almacenado:', getToken());
@@ -57,9 +57,6 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/categoria">Categorias</a>
             </li>
             {renderLinks()}
           </ul>

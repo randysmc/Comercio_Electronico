@@ -8,7 +8,6 @@ const LayoutPublic = () => {
     <>
     <h1>Layout Public</h1>
     <Navbar/>
-    <h1>Sera que aqui puedo agregar algo</h1>
     <Outlet/>
     <Footer/>
     </>

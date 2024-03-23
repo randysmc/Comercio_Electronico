@@ -32,10 +32,6 @@ Route::prefix('v1')->group(function () {
     Route::get('/public/{slug}', [FrontController::class, 'categoria']);
     Route::get('/roles', [RoleController::class, 'getRoles']);
 
-    //::rol admin
-    //Route::apiResource('/admin/producto', ProductoController::class);
-    //Route::apiResource('/admin/servicio', ServicioController::class);
-
 
 
     //::auth
@@ -54,6 +50,7 @@ Route::prefix('v1')->group(function () {
         //Admin:
         Route::apiResource('/admin/user', UserController::class);
         Route::apiResource('/admin/categoria', CategoriaController::class);
+        Route::apiResource('/admin/producto', ProductoController::class);
 
         //Vendedor
         Route::apiResource('/vendedor/producto', ProductoVendedor::class);

@@ -14,7 +14,7 @@ const axiosWithAuth = (token) => {
 export default {
     // AUTH
     getRegister: (data) => axios.post(`${base_api_url}/auth/register`, data),
-    getLogin: (data, token) => axios.post(`${base_api_url}/auth/login`, data, { headers: { 'Authorization': `Bearer ${token}` } }),
+    getLogin: (data, token) => axios.post(`${base_api_url}/auth/login`, data),
     getLogout: (token) => axios.post(`${base_api_url}/auth/logout`, null, { headers: { 'Authorization': `Bearer ${token}` } }),
     getRoles: () => axios.get(`${base_api_url}/roles`),
 
@@ -28,6 +28,10 @@ export default {
     getCategoriaAll: (token) => axiosWithAuth(token).get('/admin/categoria'),
     getCategoriaStore: (token, data) => axiosWithAuth(token).post('/admin/categoria', data),
     getCategoriaUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/categoria/${id}`, data),
+    getAdminProductAll: (token) => axiosWithAuth(token).get('/admin/producto'),
+
+    //Productos
+    getAdminProductAll: (token) => axiosWithAuth(token).get('/admin/producto'),
 
     // VENDEDOR
 
@@ -41,7 +45,7 @@ export default {
     getVendedorCategoriaAll:(token) => axiosWithAuth(token).get('vendedor/categoria'),
     
     //Vendedor-Servicios
-    getServicioAll: (token) => axiosWithAuth(token).get(`/vendedor/categoria`),
+    getServicioAll: (token) => axiosWithAuth(token).get(`/vendedor/servicio`),
     getServicioById: (token, id) => axiosWithAuth(token).get(`/vendedor/servicio/${id}`),
     getServicioStore:(token, data) => axiosWithAuth(token).post(`/vendedor/servicio`,data),
     getServicioUpdate:(token, data, id) =>axiosWithAuth(token).put(`/vendedor/servicio/${id}`,data),

@@ -9,9 +9,12 @@ use Illuminate\Support\Str;
 
 class ProductoController extends Controller
 {
-    public function index(){
-        $data = Producto::orderBy("orden")->get(['id', 'nombre', 'precio']);
-        return response()->json($data, 200);
+    public function index()
+    {
+        $productos = Producto::with(['user', 'categoria'])->get();
+        // 'user' y 'categoria' son los nombres de las relaciones definidas en el modelo Producto
+    
+        return response()->json($productos, 200);
     }
 
     public function store(Request $request){

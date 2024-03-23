@@ -10,10 +10,10 @@ const ProductosVendedor = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        getProductsByUserId();
+        getProducts();
     }, []);
 
-    const getProductsByUserId = async () => {
+    const getProducts = async () => {
         const response = await Config.getProductAll(getToken());
         const userProducts = response.data;
 
@@ -28,7 +28,6 @@ const ProductosVendedor = () => {
                     <div className="card">
                         <div className="card-body">
                         <Link to={'/vendedor/producto/create'} className='btn btn-primary'>Postear Producto</Link>
-                        <Link to={'/vendedor/servicio/create'} className='btn btn-primary'>Solicitar un Servicio</Link>
                             <table className="table">
                                 <thead>
                                     <tr>
@@ -52,7 +51,7 @@ const ProductosVendedor = () => {
                                                 <td>{product.descripcion}</td>
                                                 <td>{product.precio}</td>
                                                 <td>
-                                                    <Link to={`/admin/user/edit/${product.id}`} className="btn btn-primary">
+                                                    <Link to={`/vendedor/producto/edit/${product.id}`} className="btn btn-primary">
                                                         Editar
                                                     </Link>
                                                 </td>
