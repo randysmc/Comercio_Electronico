@@ -39,4 +39,10 @@ export default {
 
     //Vendedor-Categoria
     getVendedorCategoriaAll:(token) => axiosWithAuth(token).get('vendedor/categoria'),
+    
+    //Vendedor-Servicios
+    getServicioAll: (token) => axiosWithAuth(token).get(`/vendedor/categoria`),
+    getServicioById: (token, id) => axiosWithAuth(token).get(`/vendedor/servicio/${id}`),
+    getServicioStore:(token, data) => axiosWithAuth(token).post(`/vendedor/servicio`,data),
+    getServicioUpdate:(token, data, id) =>axiosWithAuth(token).put(`/vendedor/servicio/${id}`,data),
 };

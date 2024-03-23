@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('descripcion');
             $table->integer('precio');
             $table->boolean('disponible')->default(0);
+            $table->string('urlfoto')->nullable();
             $table->boolean('publicado')->default(0);
             $table->integer('orden')->default(1);
             $table->integer('visitas')->default(1);

@@ -29,6 +29,7 @@ import ProductStore from "./pagevendedor/ProductStore";
 const App = () => {
     return (
         <div>
+            
             <Router>
                 <Routes>
                     <Route path="/" element={<LayoutPublic />}>
@@ -58,8 +59,8 @@ const App = () => {
                             <Route path="producto" element={<ProductosVendedor/>}></Route>
                             <Route path="producto/create" element={<ProducStore/>}></Route>
 
-                            <Route path="servicio" element={<ServicioStore/>}></Route>
-                            <Route path="servicio/create" element={<ServiciosVendedor/>}></Route>
+                            <Route path="servicio/create" element={<ServicioStore/>}></Route>
+                            <Route path="servicio" element={<ServiciosVendedor/>}></Route>
 
                             
 
