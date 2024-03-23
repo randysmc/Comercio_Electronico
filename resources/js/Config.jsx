@@ -49,4 +49,11 @@ export default {
     getServicioById: (token, id) => axiosWithAuth(token).get(`/vendedor/servicio/${id}`),
     getServicioStore:(token, data) => axiosWithAuth(token).post(`/vendedor/servicio`,data),
     getServicioUpdate:(token, data, id) =>axiosWithAuth(token).put(`/vendedor/servicio/${id}`,data),
+
+
+    //COMPRADOR
+
+    //
+    getCompradorProductosAll:(token) => axiosWithAuth(token).get(`/comprador/producto`),
+    //getCompradorServiciosAll:(token) => axiosWithAuth(token).get(`/comprador/servicios`),
 };

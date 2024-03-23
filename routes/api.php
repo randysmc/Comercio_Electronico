@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\Vendedor\ProductoController as ProductoVendedor;
 use App\Http\Controllers\Api\Vendedor\ServicioController as ServicioVendedor;
 use App\Http\Controllers\Api\Vendedor\CategoriaController as CategoriaVendedor;
+use App\Http\Controllers\Api\Comprador\ProductoController as ProductoComprador;
+use App\Http\Controllers\Api\Comprador\ServicioController as ServicioComprador;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +53,7 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/admin/user', UserController::class);
         Route::apiResource('/admin/categoria', CategoriaController::class);
         Route::apiResource('/admin/producto', ProductoController::class);
+        Route::apiResource('/admin/servicio', ServicioController::class);
 
         //Vendedor
         Route::apiResource('/vendedor/producto', ProductoVendedor::class);
@@ -58,6 +61,8 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/vendedor/categoria', CategoriaVendedor::class);
 
         //::rol comprador
+        Route::apiResource('/comprador/producto', ProductoComprador::class);
+        Route::apiResource('/comprador/servicio', ServicioComprador::class);
 
 
         //::rol voluntario

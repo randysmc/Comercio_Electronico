@@ -23,6 +23,9 @@ import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate } from "./
 import {PanelVendedor, PerfilVendedor, ProductosVendedor,ProducStore, ServicioStore, ServiciosVendedor} from "./pagevendedor"
 import ProductosAll from "./pageadmin/ProductosAll";
 import ProductStore from "./pagevendedor/ProductStore";
+import ProductosComprador from "./pagecomprador/ProductosComprador";
+import ServiciosComprador from "./pagecomprador/ServiciosComprador";
+import PerfilComprador from "./pagecomprador/PerfilComprador";
 
 //import '../css/app.css'
 
@@ -61,14 +64,16 @@ const App = () => {
 
                             <Route path="servicio/create" element={<ServicioStore/>}></Route>
                             <Route path="servicio" element={<ServiciosVendedor/>}></Route>
-
-                            
-
                             
                         </Route>
 
                         <Route path="/comprador" element={<LayoutComprador />}>
                             <Route index element={<PanelComprador />} />
+                            <Route path="profile" element={<PerfilComprador/>}/>
+                            <Route path="producto" element={<ProductosComprador/>}></Route>
+                            <Route path="servicio" element={<ServiciosComprador/>}></Route>
+
+
                         </Route>
 
                         <Route path="/visitante" element={<LayoutVisitante />}>
