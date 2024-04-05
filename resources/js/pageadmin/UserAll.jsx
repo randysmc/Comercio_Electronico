@@ -40,31 +40,50 @@ const UserAll = () => {
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Name</th> <th>Email</th>
+                                        <th>Name</th> 
+                                        <th>Email</th>
                                         <th>Tipo de usuario</th>
+                                        <th>Billetera</th> {/* Nueva columna para la billetera */}
+                                        <th>Acciones</th> {/* Columna para las acciones */}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {!users
-                                        ? "...loading"
-                                        : users.map((user) => {
-                                              return (
-                                                  <tr key={user.id}>
-                                                      <td>{user.id}</td>
-                                                      <td>{user.name}</td>
-                                                      <td>{user.email}</td>
-                                                      <td>{user.aprobado}</td>
-                                                      <td>
-                                                          <Link
-                                                              to={`/admin/user/edit/${user.id}`}
-                                                              className="btn btn-primary"
-                                                          >
-                                                              
-                                                          </Link>
-                                                      </td>
-                                                  </tr>
-                                              );
-                                          })}
+                                    {!users ? (
+                                        <tr>
+                                            <td colSpan="6">...loading</td> {/* Si no hay usuarios, mostrar mensaje de carga */}
+                                        </tr>
+                                    ) : (
+                                        users.map((user) => (
+                                            <tr key={user.id}>
+                                                <td>{user.id}</td>
+                                                <td>{user.name}</td>
+                                                <td>{user.email}</td>
+                                                <td>{user.aprobado ? "Aprobado" : "No aprobado"}</td>
+                                                <td> {/* Mostrar información de la billetera y monedas */}
+                                                    {user.cartera ? (
+                                                        <div>
+                                                            <p>ID de la cartera: {user.cartera.id}</p>
+                                                            {user.cartera.monedas_cartera.map((moneda) => (
+                                                                <p key={moneda.id}>
+                                                                    Moneda: {moneda.moneda.nombre}, Cantidad: {moneda.cantidad}
+                                                                </p>
+                                                            ))}
+                                                        </div>
+                                                    ) : (
+                                                        "Sin billetera"
+                                                    )}
+                                                </td>
+                                                <td>
+                                                    <Link
+                                                        to={`/admin/user/edit/${user.id}`}
+                                                        className="btn btn-primary"
+                                                    >
+                                                        Editar {/* Enlace para editar el usuario */}
+                                                    </Link>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    )}
                                 </tbody>
                             </table>
                         </div>
@@ -73,6 +92,7 @@ const UserAll = () => {
             </div>
         </div>
     );
+    
 };
 
 export default UserAll;
