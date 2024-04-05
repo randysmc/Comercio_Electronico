@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Admin\CategoriaController;
+use App\Http\Controllers\Api\Admin\MonedaController;
 use App\Http\Controllers\Api\Admin\ProductoController;
 use App\Http\Controllers\Api\Admin\ServicioController;
 use App\Http\Controllers\Api\Admin\UserController;
@@ -33,6 +34,7 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/public/{slug}', [FrontController::class, 'categoria']);
     Route::get('/roles', [RoleController::class, 'getRoles']);
+    Route::apiResource('/admin/moneda', MonedaController::class);
 
 
 

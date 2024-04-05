@@ -30,8 +30,7 @@ export default {
     getCategoriaUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/categoria/${id}`, data),
     getAdminProductAll: (token) => axiosWithAuth(token).get('/admin/producto'),
 
-    //Productos
-    getAdminProductAll: (token) => axiosWithAuth(token).get('/admin/producto'),
+    getAdminServiciosAll: (token) => axiosWithAuth(token).get('/admin/servicio'),
 
     // VENDEDOR
 

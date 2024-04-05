@@ -59,7 +59,7 @@ const UserAll = () => {
                                                               to={`/admin/user/edit/${user.id}`}
                                                               className="btn btn-primary"
                                                           >
-                                                              Editar
+                                                              
                                                           </Link>
                                                       </td>
                                                   </tr>

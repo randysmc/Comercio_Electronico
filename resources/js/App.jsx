@@ -26,6 +26,7 @@ import ProductStore from "./pagevendedor/ProductStore";
 import ProductosComprador from "./pagecomprador/ProductosComprador";
 import ServiciosComprador from "./pagecomprador/ServiciosComprador";
 import PerfilComprador from "./pagecomprador/PerfilComprador";
+import ServiciosAll from "./pageadmin/ServiciosAll";
 
 //import '../css/app.css'
 
@@ -51,6 +52,7 @@ const App = () => {
                             <Route path="categoria/create" element={<CategoriaStore/>}></Route>
                             <Route path="producto" element={<ProductosAll />}></Route>
                             <Route path="producto/create" element={<ProductStore/>}></Route>
+                            <Route path="servicio" element={<ServiciosAll />}></Route>
                             
                             
                         </Route>

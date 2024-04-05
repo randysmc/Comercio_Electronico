@@ -10,9 +10,9 @@ const SidebarVendedor = () => {
                 <NavLink to={`/vendedor/profile`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")}  >Perfil</NavLink>
                 <NavLink to={`/vendedor/producto`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Productos Publicados</NavLink>
                 <NavLink to={`/vendedor/servicio`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Servicios publicados</NavLink>
-                <NavLink to={`/admin/servicio`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Ofertas Recibidas</NavLink>
-                <NavLink to={`/home`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Historial de ventas</NavLink>
-                <NavLink to={`/home`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")}  >Inbox</NavLink>
+                <NavLink to={`/admin/servicio`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} ></NavLink>
+                <NavLink to={`/home`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} ></NavLink>
+                <NavLink to={`/home`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")}  ></NavLink>
             </div>
         </div>
 

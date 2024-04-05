@@ -10,9 +10,10 @@ use Psy\Readline\Hoa\Console;
 class UserController extends Controller
 {
     //Me muestra todos los usuarios
-    public function index(){
-        
-        $data = User::all();
+    public function index()
+    {
+        // Obtener todos los usuarios con sus relaciones de cartera y monedaCartera cargadas
+        $data = User::with('cartera.monedasCartera.moneda')->get();
         
         return response()->json($data, 200);
     }

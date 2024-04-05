@@ -4,17 +4,18 @@ import Sidebar from "./Sidebar";
 import { Link } from 'react-router-dom';
 import AuthUser from '../pageauth/AuthUser';
 
-const ProductosAll = () => {
+
+const ServiciosAll = () => {
     const { getUser, getToken } = AuthUser();
     //const user = getUser();
     const [products, setProducts] = useState([]);
 
     useEffect(() =>{
-        getAllProducts();
+        getAllServicios();
     },[]);
 
-    const getAllProducts = async() =>{
-        const response = await Config.getAdminProductAll(getToken());
+    const getAllServicios = async() =>{
+        const response = await Config.getAdminServiciosAll(getToken());
         //console.log(response.data)
         const userProducts = response.data;
 
@@ -33,9 +34,9 @@ const ProductosAll = () => {
                             <table className="table">
                                 <thead>
                                     <tr>
-                                        <th>Vendedor</th>
-                                        <th>Categoria</th>
-                                        <th>Producto</th>
+                                        
+                                        
+                                        <th>Servicio</th>
                                         <th>Descripción</th>
                                         <th>Precio</th>
                                         <th>Estado?</th>
@@ -50,8 +51,8 @@ const ProductosAll = () => {
                                     ) : (
                                         products.map((product) => (
                                             <tr key={product.id}>
-                                                <td>{product.user.name}</td>
-                                                <td>{product.categoria.nombre}</td>
+                                                
+                                                
                                                 <td>{product.nombre}</td>
                                                 <td>{product.descripcion}</td>
                                                 <td>{product.precio}</td>
@@ -72,7 +73,6 @@ const ProductosAll = () => {
             </div>
         </div>
     );
-};
+}
 
-
-export default ProductosAll;
+export default ServiciosAll

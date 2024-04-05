@@ -46,7 +46,7 @@ const CategoriaAll = () => {
                                                     <td>{categoria.slug}</td>
                                                     <td>{categoria.descripcion}</td>
                                                     <td>
-                                                        <Link to={ `/admin/categoria/edit/${categoria.id}`} className="btn btn-primary">Editar </Link>
+                                                        <Link to={ `/admin/categoria/edit/${categoria.id}`} className="btn btn-primary"> </Link>
                                                     </td>
                                                     
 

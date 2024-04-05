@@ -62,7 +62,7 @@ const ServiciosVendedor = () => {
                                                 <td>{servicio.descripcion}</td>
                                                 <td>{servicio.precio}</td>
                                                 <td>
-                                                    <Link to={`/vendedor/producto/edit/${servicio.id}`}className="btn btn-primary" >Editar</Link>
+                                                    <Link to={`/vendedor/producto/edit/${servicio.id}`}className="btn btn-primary" ></Link>
                                                 </td>
                                             </tr>
                                         ))

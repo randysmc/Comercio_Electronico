@@ -63,12 +63,7 @@ const ProductosComprador = () => {
                       <h5 className="card-title">{product.nombre}</h5>
                       <p className="card-text">{product.descripcion}</p>
                       <p className="card-text">Precio: ${product.precio}</p>
-                      <Link
-                        to={`/admin/user/edit/${product.id}`}
-                        className="btn btn-primary"
-                      >
-                        Editar
-                      </Link>
+
                     </div>
                   </div>
                 </div>

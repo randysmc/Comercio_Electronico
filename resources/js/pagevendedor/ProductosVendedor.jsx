@@ -52,7 +52,7 @@ const ProductosVendedor = () => {
                                                 <td>{product.precio}</td>
                                                 <td>
                                                     <Link to={`/vendedor/producto/edit/${product.id}`} className="btn btn-primary">
-                                                        Editar
+                                                        
                                                     </Link>
                                                 </td>
                                             </tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Moneda;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -37,7 +38,21 @@ class AuthController extends Controller
     
         // Crear el usuario
         $user = User::create($input);
-        
+    
+        // Crear la cartera para el usuario
+        $cartera = $user->cartera()->create();
+    
+        // Obtener todas las monedas
+        $monedas = Moneda::all();
+    
+        // Agregar MonedaCartera para cada moneda con cantidad 0
+        foreach ($monedas as $moneda) {
+            $cartera->monedasCartera()->create([ // Cambio aquí
+                'moneda_id' => $moneda->id,
+                'cantidad' => 0
+            ]);
+        }
+    
         // Asignar el rol al usuario según el número proporcionado
         $roleId = $request->input('role');
         $role = Role::find($roleId);
@@ -54,6 +69,9 @@ class AuthController extends Controller
     
         return response()->json($response, 200);
     }
+    
+    
+    
 
 
     public function login(Request $request)
