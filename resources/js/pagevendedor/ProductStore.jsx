@@ -45,7 +45,7 @@ const ProductStore = () => {
         e.preventDefault();
         try {
             await Config.getProductoStore(getToken(), { nombre, precio, descripcion, urlfoto, categoria_id });
-            navigate('vendedor/producto');
+            navigate('/usuario/');
         } catch (error) {
             console.error("Error al crear el producto:", error);
             // Manejar el error según sea necesario

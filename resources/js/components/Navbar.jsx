@@ -28,7 +28,7 @@ const Navbar = () => {
       return (
         <>
           <li className="nav-item">
-            <a className="nav-link" href={`/${getRol()}`} >Acciones</a>
+            <a className="nav-link" href={`/usuario`} >Acciones</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#" onClick={logoutUser}>Logout</a>

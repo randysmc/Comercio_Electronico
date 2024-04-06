@@ -1,27 +1,45 @@
 <?php
 
-namespace App\Http\Controllers\Api\Vendedor;
+namespace App\Http\Controllers\Api\Usuario;
 
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ProductoController extends Controller
 {
-    //
-    public function index(){
-        // Obtener el ID del usuario autenticado
-        $userId = Auth::id();
-    
-        // Filtrar los productos por el ID del usuario autenticado
-        $data = Producto::where('user_id', $userId)->get();
-    
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+        $data = Producto::all();
         return response()->json($data, 200);
     }
 
+    public function userProducts()
+    {
+        $userId = Auth::id();
+        
+        $data = Producto::where('user_id', $userId)->get();
 
+        return response()->json($data, 200);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request){
         $data = new Producto(($request->all()));
         
@@ -47,12 +65,26 @@ class ProductoController extends Controller
         return response()->json($data, 200);
     }
 
-
+    /**
+     * Display the specified resource.
+     */
     public function show($id){
         $data = Producto::find($id);
         return response()->json($data,200);
     }
 
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id){
         $data = Producto::find($id);
         $data->fill($request->all());
@@ -75,6 +107,9 @@ class ProductoController extends Controller
         return response()->json($data,200);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy($id){
         $data = Producto::find($id);
         $data->delete();
@@ -82,4 +117,3 @@ class ProductoController extends Controller
 
     }
 }
-

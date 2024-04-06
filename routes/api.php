@@ -5,15 +5,16 @@ use App\Http\Controllers\Api\Admin\MonedaController;
 use App\Http\Controllers\Api\Admin\ProductoController;
 use App\Http\Controllers\Api\Admin\ServicioController;
 use App\Http\Controllers\Api\Admin\UserController;
+
 use App\Http\Controllers\Api\FrontController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
-use App\Http\Controllers\Api\Vendedor\ProductoController as ProductoVendedor;
-use App\Http\Controllers\Api\Vendedor\ServicioController as ServicioVendedor;
-use App\Http\Controllers\Api\Vendedor\CategoriaController as CategoriaVendedor;
-use App\Http\Controllers\Api\Comprador\ProductoController as ProductoComprador;
-use App\Http\Controllers\Api\Comprador\ServicioController as ServicioComprador;
-use App\Models\Servicio;
+
+use App\Http\Controllers\Api\Usuario\ProductoController as ProductoUsuario;
+use App\Http\Controllers\Api\Usuario\CategoriaController as CategoriaUsuario;
+use App\Http\Controllers\Api\Usuario\ServicioController as ServicioUsuario;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -57,14 +58,16 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/admin/producto', ProductoController::class);
         Route::apiResource('/admin/servicio', ServicioController::class);
 
-        //Vendedor
-        Route::apiResource('/vendedor/producto', ProductoVendedor::class);
-        Route::apiResource('/vendedor/servicio', ServicioVendedor::class);
-        Route::apiResource('/vendedor/categoria', CategoriaVendedor::class);
+        //User
+        Route::apiResource('/usuario/producto', ProductoUsuario::class);
+        Route::get('/usuario/productos', [ProductoUsuario::class, 'userProducts']);
 
-        //::rol comprador
-        Route::apiResource('/comprador/producto', ProductoComprador::class);
-        Route::apiResource('/comprador/servicio', ServicioComprador::class);
+        Route::apiResource('/usuario/categoria', CategoriaUsuario::class);
+        Route::apiResource('/usuario/servicio', ServicioUsuario::class);
+        
+
+
+
 
 
         //::rol voluntario

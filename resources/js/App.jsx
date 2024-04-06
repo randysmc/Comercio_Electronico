@@ -4,9 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import LayoutPublic from "./layouts/LayoutPublic";
 import LayoutAdmin from "./layouts/LayoutAdmin";
-import LayoutComprador from "./layouts/LayoutComprador";
 import LayoutVendedor from "./layouts/LayoutVendedor";
-import LayoutVisitante from "./layouts/LayoutVisitante";
+
 
 import PageHome from "./pagepublic/PageHome";
 import ProtectedRoutes from "./pageauth/ProtectedRoutes";
@@ -15,17 +14,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pageauth/Login";
 import Register from "./pageauth/Register";
 
-import PanelComprador from "./pagecomprador/PanelComprador";
-import PanelVisitante from "./pagevisitante/PanelVisitante";
+
+
 
 import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate } from "./pageadmin";
 
-import {PanelVendedor, PerfilVendedor, ProductosVendedor,ProducStore, ServicioStore, ServiciosVendedor} from "./pagevendedor"
+import {PanelVendedor, PerfilVendedor, TodosLosProductos,ProducStore, ServicioStore, ServiciosVendedor, MisProductos} from "./pagevendedor"
 import ProductosAll from "./pageadmin/ProductosAll";
 import ProductStore from "./pagevendedor/ProductStore";
-import ProductosComprador from "./pagecomprador/ProductosComprador";
-import ServiciosComprador from "./pagecomprador/ServiciosComprador";
-import PerfilComprador from "./pagecomprador/PerfilComprador";
+
 import ServiciosAll from "./pageadmin/ServiciosAll";
 
 //import '../css/app.css'
@@ -57,29 +54,18 @@ const App = () => {
                             
                         </Route>
 
-                        <Route path="/vendedor" element={<LayoutVendedor />}>
+                        <Route path="/usuario" element={<LayoutVendedor />}>
                             <Route index element={< PanelVendedor/>} />
                             <Route path="profile" element={<PerfilVendedor/>}/>
 
-                            <Route path="producto" element={<ProductosVendedor/>}></Route>
+                            <Route path="producto" element={<TodosLosProductos/>}></Route>
+                            <Route path="mis-productos" element={<MisProductos/>}></Route>
                             <Route path="producto/create" element={<ProducStore/>}></Route>
 
-                            <Route path="servicio/create" element={<ServicioStore/>}></Route>
                             <Route path="servicio" element={<ServiciosVendedor/>}></Route>
+                            <Route path="servicio/create" element={<ServicioStore/>}></Route>           
+
                             
-                        </Route>
-
-                        <Route path="/comprador" element={<LayoutComprador />}>
-                            <Route index element={<PanelComprador />} />
-                            <Route path="profile" element={<PerfilComprador/>}/>
-                            <Route path="producto" element={<ProductosComprador/>}></Route>
-                            <Route path="servicio" element={<ServiciosComprador/>}></Route>
-
-
-                        </Route>
-
-                        <Route path="/visitante" element={<LayoutVisitante />}>
-                            <Route index element={<PanelVisitante />} />
                         </Route>
                     </Route>
                 </Routes>

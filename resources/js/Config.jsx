@@ -32,27 +32,22 @@ export default {
 
     getAdminServiciosAll: (token) => axiosWithAuth(token).get('/admin/servicio'),
 
-    // VENDEDOR
+    // USER
 
-    // Vendedor-Productos
-    getProductAll: (token) => axiosWithAuth(token).get('/vendedor/producto'),
-    getProductById: (token, id) => axiosWithAuth(token).get(`/vendedor/producto/${id}`),
-    getProductoStore: (token, data) => axiosWithAuth(token).post('/vendedor/producto', data),
-    getProductoUpdate: (token, data, id) => axiosWithAuth(token).put(`/vendedor/producto/${id}`, data),
+    // User-Productos
+    getProductAll: (token) => axiosWithAuth(token).get('/usuario/producto'),
+    getUserProductAll: (token) => axiosWithAuth(token).get('/usuario/productos'),
+    getProductById: (token, id) => axiosWithAuth(token).get(`/usuario/producto/${id}`),
+    getProductoStore: (token, data) => axiosWithAuth(token).post('/usuario/producto', data),
+    getProductoUpdate: (token, data, id) => axiosWithAuth(token).put(`/usuario/producto/${id}`, data),
 
-    //Vendedor-Categoria
-    getVendedorCategoriaAll:(token) => axiosWithAuth(token).get('vendedor/categoria'),
+    //User-Categoria
+    getVendedorCategoriaAll:(token) => axiosWithAuth(token).get('usuario/categoria'),
     
-    //Vendedor-Servicios
-    getServicioAll: (token) => axiosWithAuth(token).get(`/vendedor/servicio`),
-    getServicioById: (token, id) => axiosWithAuth(token).get(`/vendedor/servicio/${id}`),
-    getServicioStore:(token, data) => axiosWithAuth(token).post(`/vendedor/servicio`,data),
-    getServicioUpdate:(token, data, id) =>axiosWithAuth(token).put(`/vendedor/servicio/${id}`,data),
+    //User-Servicios
+    getServicioAll: (token) => axiosWithAuth(token).get(`/usuario/servicio`),
+    getServicioById: (token, id) => axiosWithAuth(token).get(`/usuario/servicio/${id}`),
+    getServicioStore:(token, data) => axiosWithAuth(token).post(`/usuario/servicio`,data),
+    getServicioUpdate:(token, data, id) =>axiosWithAuth(token).put(`/usuario/servicio/${id}`,data),
 
-
-    //COMPRADOR
-
-    //
-    getCompradorProductosAll:(token) => axiosWithAuth(token).get(`/comprador/producto`),
-    //getCompradorServiciosAll:(token) => axiosWithAuth(token).get(`/comprador/servicios`),
 };

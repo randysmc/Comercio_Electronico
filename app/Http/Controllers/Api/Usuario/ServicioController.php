@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Vendedor;
+namespace App\Http\Controllers\Api\Usuario;
 
 use App\Http\Controllers\Controller;
 use App\Models\Servicio;
@@ -11,20 +11,26 @@ use Illuminate\Support\Str;
 class ServicioController extends Controller
 {
     //
-    public function index(){
-        //Obtenemos el Id del usuario autenticado
+    public function index()
+    {
+        $data = Servicio::all();
+        return response()->json($data, 200);
+    }
+
+    public function userServices()
+    {
         $userId = Auth::id();
 
-        //Filtramos los productos por el ID del usuario autenticado
         $data = Servicio::where('user_id', $userId)->get();
 
         return response()->json($data, 200);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = new Servicio(($request->all()));
         $data->user_id = Auth::id();
-        $data->disponible =1;
+        $data->disponible = 1;
 
         if ($request->urlfoto) {
             $img = $request->urlfoto;
@@ -41,17 +47,17 @@ class ServicioController extends Controller
         }
 
         $data->save();
-        return response()->json($data,200);
-
+        return response()->json($data, 200);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $data = Servicio::find($id);
-        return response()->json($data,200);
-
+        return response()->json($data, 200);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $data = Servicio::find($id);
         $data->fill($request->all());
 
@@ -70,15 +76,13 @@ class ServicioController extends Controller
         }
 
         $data->save();
-        return response()->json($data,200);
-
-
+        return response()->json($data, 200);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $data = Servicio::find($id);
         $data->delete();
-        return response()->json("Servicio Eliminado Correctamente",200);
+        return response()->json("Servicio Eliminado Correctamente", 200);
     }
-
 }

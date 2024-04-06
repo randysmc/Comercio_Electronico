@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
+namespace App\Http\Controllers\Api\Usuario;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
-class ServicioController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = Categoria::all();
+        //$data = Categoria::orderBy("orden")->get(["id", "nombre, slug, descripcion"]);
+        return response()->json($data, 200);
     }
 
     /**

@@ -39,11 +39,11 @@ const AuthUser = () => {
 
         if (getRol() === "admin") navigate("/admin");
 
-        if (getRol() === "vendedor") navigate("/vendedor");
+        if (getRol() === "vendedor") navigate("/usuario");
 
-        if (getRol() === "comprador") navigate("/comprador");
+        if (getRol() === "comprador") navigate("/usuario");
 
-        if (getRol() === "voluntario") navigate("/voluntario");
+        if (getRol() === "voluntario") navigate("/usuario");
     };
 
     const getLogout = () =>{
