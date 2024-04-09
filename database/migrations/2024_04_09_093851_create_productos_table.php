@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('visitas')->default(1);
             $table->foreignId('categoria_id')->references('id')->on('categorias')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('moneda_id')->references('id')->on('monedas')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

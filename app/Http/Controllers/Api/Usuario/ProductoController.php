@@ -24,7 +24,7 @@ class ProductoController extends Controller
     {
         $userId = Auth::id();
         
-        $data = Producto::where('user_id', $userId)->get();
+        $data = Producto::with(['moneda', 'categoria'])->where('user_id', $userId)->get();
 
         return response()->json($data, 200);
     }
@@ -46,6 +46,8 @@ class ProductoController extends Controller
         //$data->user()->associate(Auth::user());
         $data->user_id = Auth::id();
         $data->disponible =1;
+
+        $data->moneda_id = 2;
 
         if ($request->urlfoto) {
             $img = $request->urlfoto;

@@ -25,47 +25,35 @@ const MisProductos = () => {
             <div className="row">
                 <SidebarVendedor />
                 <div className="col-sm-9 mt-3 mb-3">
-                    <div className="card">
-                        <div className="card-body">
-                        <Link to={'/usuario/producto/create'} className='btn btn-primary'>Postear Producto</Link>
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Nombre</th>
-                                        <th>Descripción</th>
-                                        <th>Precio</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {!products ? (
-                                        <tr>
-                                            <td colSpan="5">Cargando...</td>
-                                        </tr>
-                                    ) : (
-                                        products.map((product) => (
-                                            <tr key={product.id}>
-                                                <td>{product.id}</td>
-                                                <td>{product.nombre}</td>
-                                                <td>{product.descripcion}</td>
-                                                <td>{product.precio}</td>
-                                                <td>
-                                                    <Link to={`/vendedor/producto/edit/${product.id}`} className="btn btn-primary">
-                                                        
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    )}
-                                </tbody>
-                            </table>
-                        </div>
+                <Link to={'/usuario/producto/create'} className='btn btn-primary'>Postear Producto</Link>
+                    <div className="row row-cols-1 row-cols-md-2 g-4">
+                        {!products ? (
+                            <div className="col">
+                                Cargando...
+                            </div>
+                        ) : (
+                            products.map((product) => (
+                                <div key={product.id} className="col">
+                                    <div className="card">
+                                        <img src={product.urlfoto} className="card-img-top" alt={product.nombre} />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{product.nombre}</h5>
+                                            <p className="card-text">{product.descripcion}</p>
+                                            <p className="card-text">Precio: {product.precio} {product.moneda ? product.moneda.nombre : ''}</p>
+                                            <p className="card-text">Categoría: {product.categoria ? product.categoria.nombre : ''}</p>
+                                            <p className="card-text">Visitas: {product.visitas}</p>
+                                            <Link to={`/vendedor/producto/edit/${product.id}`} className="btn btn-primary">Editar</Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </div>
         </div>
     );
+    
 };
 
 export default MisProductos
