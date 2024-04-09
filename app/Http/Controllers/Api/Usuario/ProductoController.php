@@ -13,12 +13,20 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $data = Producto::all();
-        return response()->json($data, 200);
-    }
+
+     public function index()
+     {
+         // Obtener el ID del usuario autenticado
+         $userId = auth()->id();
+     
+         // Obtener todos los productos excluyendo los productos del usuario autenticado
+         $productos = Producto::with('categoria', 'moneda')
+             ->where('user_id', '!=', $userId)
+             ->get();
+     
+         return response()->json($productos, 200);
+     }
+     
 
     public function userProducts()
     {
@@ -41,31 +49,34 @@ class ProductoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request){
-        $data = new Producto(($request->all()));
-        
-        //$data->user()->associate(Auth::user());
+        $data = new Producto($request->all());
         $data->user_id = Auth::id();
-        $data->disponible =1;
-
+        $data->disponible = 1;
         $data->moneda_id = 2;
-
-        if ($request->urlfoto) {
-            $img = $request->urlfoto;
-            //process
+    
+        if ($request->has('urlfoto')) {
+            $image = $request->file('urlfoto');
+    
+            // Validar el tipo de archivo
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+            $extension = $image->getClientOriginalExtension();
+            if (!in_array($extension, $allowedTypes)) {
+                return response()->json(['error' => 'El formato de la imagen no es válido.'], 400);
+            }
+    
+            // Guardar la imagen en la carpeta /img/producto
             $folderPath = "/img/producto/";
-            $image_parts = explode(";base64,", $img);
-            $image_type_aux = explode("image/", $image_parts[0]);
-            $image_type = $image_type_aux[1];
-            $image_base64 = base64_decode($image_parts[1]);
-            $file = $folderPath . Str::slug($request->nombre) . '.' . $image_type;
-            file_put_contents(public_path($file), $image_base64);
-
-            $data->urlfoto = Str::slug($request->nombre) . '.' . $image_type;
+            $fileName = Str::slug($request->nombre) . '.' . $extension;
+            $image->move(public_path($folderPath), $fileName);
+    
+            // Guardar la ruta de la imagen en la base de datos
+            $data->urlfoto = $folderPath . $fileName;
         }
-
+    
         $data->save();
         return response()->json($data, 200);
     }
+    
 
     /**
      * Display the specified resource.

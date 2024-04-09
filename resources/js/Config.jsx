@@ -20,9 +20,9 @@ export default {
 
     // ADMIN
     // User
-    getUserAll: (token) => axiosWithAuth(token).get('/admin/user'),
-    getUserById: (token, id) => axiosWithAuth(token).get(`/admin/user/${id}`),
-    getUserUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/user/${id}`, data),
+    getUser: (token) => axiosWithAuth(token).get('/admin/user'),
+    //getUserById: (token, id) => axiosWithAuth(token).get(`/admin/user/${id}`),
+    //getUserUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/user/${id}`, data),
 
     // Categorias
     getCategoriaAll: (token) => axiosWithAuth(token).get('/admin/categoria'),
@@ -33,6 +33,12 @@ export default {
     getAdminServiciosAll: (token) => axiosWithAuth(token).get('/admin/servicio'),
 
     // USER
+
+    //User-usuario
+    //getUsuarioById: (token, id) => axiosWithAuth(token).get(`/usuario/user/${id}`),
+    getUsuario:(token)=>axiosWithAuth(token).get(`usuario/user`),
+    getUsuarioCartera: (token) => axiosWithAuth(token).get(`/usuario/user/cartera`),
+    getUsuarioUpdate: (token, data, id) => axiosWithAuth(token).get(`/usuario/user/${id}`, data),
 
     // User-Productos
     getProductAll: (token) => axiosWithAuth(token).get('/usuario/producto'),
@@ -49,5 +55,8 @@ export default {
     getServicioById: (token, id) => axiosWithAuth(token).get(`/usuario/servicio/${id}`),
     getServicioStore:(token, data) => axiosWithAuth(token).post(`/usuario/servicio`,data),
     getServicioUpdate:(token, data, id) =>axiosWithAuth(token).put(`/usuario/servicio/${id}`,data),
+
+    //User-Cartera
+
 
 };

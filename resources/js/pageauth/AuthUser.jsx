@@ -43,7 +43,7 @@ const AuthUser = () => {
 
         if (getRol() === "comprador") navigate("/usuario");
 
-        if (getRol() === "voluntario") navigate("/usuario");
+        if (getRol() === "visitante") navigate("/usuario");
     };
 
     const getLogout = () =>{

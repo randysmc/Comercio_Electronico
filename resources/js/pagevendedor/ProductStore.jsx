@@ -15,6 +15,7 @@ const ProductStore = () => {
     const [categoria_id, setCategoriaId] = useState('');
     const [categorias, setCategorias] = useState([]);
     const [categoriasCargadas, setCategoriasCargadas] = useState(false);
+    const [imagen, setImagen] = useState(null); // Estado para almacenar la imagen seleccionada
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,18 +34,22 @@ const ProductStore = () => {
     };
 
     const handleInputChange = (e) => {
-        const files = e.target.files;
-        const reader = new FileReader();
-        reader.readAsDataURL(files[0]);
-        reader.onload = (e) => {
-            setUrlfoto(e.target.result);
-        };
+        const file = e.target.files[0]; // Obtener el archivo seleccionado
+        setImagen(file); // Almacenar el archivo en el estado
     };
 
     const submitStore = async (e) => {
         e.preventDefault();
         try {
-            await Config.getProductoStore(getToken(), { nombre, precio, descripcion, urlfoto, categoria_id });
+            const formData = new FormData(); // Crear un objeto FormData para enviar datos al backend
+
+            formData.append('nombre', nombre);
+            formData.append('precio', precio);
+            formData.append('descripcion', descripcion);
+            formData.append('categoria_id', categoria_id);
+            formData.append('urlfoto', imagen); // Agregar la imagen al FormData
+
+            await Config.getProductoStore(getToken(), formData); // Enviar FormData al backend
             navigate('/usuario/');
         } catch (error) {
             console.error("Error al crear el producto:", error);

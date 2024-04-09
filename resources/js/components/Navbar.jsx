@@ -4,7 +4,7 @@ import Config from '../Config';
 
 const Navbar = () => {
 
-  const {getRol, getLogout, getToken} = AuthUser()
+  const { getRol, getLogout, getToken } = AuthUser();
 
   const logoutUser = () => {
     const token = getToken(); // Obtener el token de la función getToken
@@ -17,11 +17,7 @@ const Navbar = () => {
         console.error("Error al realizar el logout:", error);
         // Manejar el error según sea necesario
     });
-}
-  
-
-  console.log('Token de sesión almacenado:', getToken());
-  console.log('Rol de persona autenticada:', getRol());
+  }
 
   const renderLinks = () => {
     if(getToken()){
@@ -32,6 +28,10 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#" onClick={logoutUser}>Logout</a>
+          </li>
+          {/* Mostrar el rol del usuario */}
+          <li className="nav-item">
+            <span className="nav-link">Rol: {getRol()}</span>
           </li>
         </>
       );
@@ -68,4 +68,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
 export default Navbar;

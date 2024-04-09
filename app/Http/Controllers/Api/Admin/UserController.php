@@ -22,7 +22,22 @@ class UserController extends Controller
     public function show($id){
         $data = User::find($id);
         return response()->json($data, 200);
+    }
 
+    
+    public function getCartera(Request $request)
+    {
+        $user = $request->user(); // Obtener el usuario autenticado
+        $cartera = $user->cartera; // Obtener la cartera del usuario
+
+        if (!$cartera) {
+            return response()->json(['message' => 'El usuario no tiene una cartera'], 404);
+        }
+
+        // Obtener las monedas en la cartera
+        $monedasCartera = $cartera->monedaCarteras()->with('moneda')->get();
+
+        return response()->json(['cartera' => $cartera, 'monedas' => $monedasCartera]);
     }
 
     //para actualizar

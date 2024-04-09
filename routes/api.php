@@ -13,6 +13,8 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\Usuario\ProductoController as ProductoUsuario;
 use App\Http\Controllers\Api\Usuario\CategoriaController as CategoriaUsuario;
 use App\Http\Controllers\Api\Usuario\ServicioController as ServicioUsuario;
+use App\Http\Controllers\Api\Usuario\UserController as UserUsuario;
+
 
 
 use Illuminate\Http\Request;
@@ -59,8 +61,10 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/admin/servicio', ServicioController::class);
 
         //User
+
         Route::apiResource('/usuario/producto', ProductoUsuario::class);
         Route::get('/usuario/productos', [ProductoUsuario::class, 'userProducts']);
+        Route::apiResource('/usuario/user', UserUsuario::class);
 
         Route::apiResource('/usuario/categoria', CategoriaUsuario::class);
         Route::apiResource('/usuario/servicio', ServicioUsuario::class);

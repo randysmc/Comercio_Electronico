@@ -48,43 +48,41 @@ const UserAll = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {!users ? (
-                                        <tr>
-                                            <td colSpan="6">...loading</td> {/* Si no hay usuarios, mostrar mensaje de carga */}
-                                        </tr>
-                                    ) : (
-                                        users.map((user) => (
-                                            <tr key={user.id}>
-                                                <td>{user.id}</td>
-                                                <td>{user.name}</td>
-                                                <td>{user.email}</td>
-                                                <td>{user.aprobado ? "Aprobado" : "No aprobado"}</td>
-                                                <td> {/* Mostrar información de la billetera y monedas */}
-                                                    {user.cartera ? (
-                                                        <div>
-                                                            <p>ID de la cartera: {user.cartera.id}</p>
-                                                            {user.cartera.monedas_cartera.map((moneda) => (
-                                                                <p key={moneda.id}>
-                                                                    Moneda: {moneda.moneda.nombre}, Cantidad: {moneda.cantidad}
-                                                                </p>
-                                                            ))}
-                                                        </div>
-                                                    ) : (
-                                                        "Sin billetera"
-                                                    )}
-                                                </td>
-                                                <td>
-                                                    <Link
-                                                        to={`/admin/user/edit/${user.id}`}
-                                                        className="btn btn-primary"
-                                                    >
-                                                        Editar {/* Enlace para editar el usuario */}
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    )}
-                                </tbody>
+    {!users ? (
+        <tr>
+            <td colSpan="6">...loading</td>
+        </tr>
+    ) : (
+        users.map((user) => (
+            <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.aprobado ? "Aprobado" : "No aprobado"}</td>
+                <td>
+                    {user.cartera ? (
+                        <div>
+                            <p>ID de la cartera: {user.cartera.id}</p>
+                            {user.cartera.monedas_cartera.map((moneda) => (
+                                <p key={moneda.id}>
+                                    Moneda: {moneda.moneda.nombre}, Cantidad: {moneda.cantidad}
+                                </p>
+                            ))}
+                        </div>
+                    ) : (
+                        "Sin billetera"
+                    )}
+                </td>
+                <td>
+                    <Link to={`/admin/user/edit/${user.id}`} className="btn btn-primary">
+                        Editar
+                    </Link>
+                </td>
+            </tr>
+        ))
+    )}
+</tbody>
+
                             </table>
                         </div>
                     </div>
@@ -92,7 +90,6 @@ const UserAll = () => {
             </div>
         </div>
     );
-    
 };
 
 export default UserAll;
