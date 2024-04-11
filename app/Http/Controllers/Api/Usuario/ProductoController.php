@@ -22,6 +22,7 @@ class ProductoController extends Controller
          // Obtener todos los productos excluyendo los productos del usuario autenticado
          $productos = Producto::with('categoria', 'moneda')
              ->where('user_id', '!=', $userId)
+             ->where('disponible', 1) // Filtrar por productos disponibles
              ->get();
      
          return response()->json($productos, 200);

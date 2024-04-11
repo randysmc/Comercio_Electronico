@@ -9,7 +9,7 @@ const CompraProducto = () => {
     const user = getUser();
 
     const params = new URLSearchParams(window.location.search);
-    const precio = params.get('precio');
+    const dinero = params.get('precio');
     const user_id_vendedor = params.get('user_id_vendedor');
     const id_producto = params.get('id_producto');
     
@@ -21,12 +21,12 @@ const CompraProducto = () => {
     const realizarCompra = async () => {
         try {
             // Realizar la transacción
-            console.log("Precio:", precio);
+            console.log("Precio:", dinero);
             console.log("ID del vendedor:", user_id_vendedor);
             console.log("ID del comprador:", user_id_comprador);
             console.log("ID del producto:", id_producto);
             await Config.getTransaccionStore(getToken(), {
-                precio,
+                dinero,
                 user_id_vendedor,
                 user_id_comprador,
                 id_producto,
@@ -53,8 +53,8 @@ const CompraProducto = () => {
                             <form>
                                 {/* Mostrar los datos del producto */}
                                 <div className="mb-3">
-                                    <label htmlFor="precio" className="form-label">Precio:</label>
-                                    <input type="text" id="precio" name="precio" className="form-control" value={precio} readOnly />
+                                    <label htmlFor="dinero" className="form-label">Precio:</label>
+                                    <input type="text" id="dinero" name="dinero" className="form-control" value={dinero} readOnly />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="user_id_vendedor" className="form-label">ID del Vendedor:</label>
