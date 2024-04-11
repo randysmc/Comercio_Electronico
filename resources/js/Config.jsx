@@ -20,9 +20,9 @@ export default {
 
     // ADMIN
     // User
-    getUser: (token) => axiosWithAuth(token).get('/admin/user'),
-    //getUserById: (token, id) => axiosWithAuth(token).get(`/admin/user/${id}`),
-    //getUserUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/user/${id}`, data),
+    getUserAll: (token) => axiosWithAuth(token).get('/admin/user'),
+    getUserById: (token, id) => axiosWithAuth(token).get(`/admin/user/${id}`),
+    getUserUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/user/${id}`, data),
 
     // Categorias
     getCategoriaAll: (token) => axiosWithAuth(token).get('/admin/categoria'),
@@ -43,12 +43,15 @@ export default {
     // User-Productos
     getProductAll: (token) => axiosWithAuth(token).get('/usuario/producto'),
     getUserProductAll: (token) => axiosWithAuth(token).get('/usuario/productos'),
+    
     getProductById: (token, id) => axiosWithAuth(token).get(`/usuario/producto/${id}`),
     getProductoStore: (token, data) => axiosWithAuth(token).post('/usuario/producto', data),
     getProductoUpdate: (token, data, id) => axiosWithAuth(token).put(`/usuario/producto/${id}`, data),
 
     //User-Categoria
     getVendedorCategoriaAll:(token) => axiosWithAuth(token).get('usuario/categoria'),
+
+    getTransaccionStore:(token, data) => axiosWithAuth(token).post('/usuario/transaccion', data),
     
     //User-Servicios
     getServicioAll: (token) => axiosWithAuth(token).get(`/usuario/servicio`),

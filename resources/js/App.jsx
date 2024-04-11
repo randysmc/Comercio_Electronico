@@ -19,7 +19,7 @@ import Register from "./pageauth/Register";
 
 import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate } from "./pageadmin";
 
-import {PanelVendedor, PerfilVendedor, TodosLosProductos,ProducStore, ServicioStore, ServiciosVendedor, MisProductos} from "./pagevendedor"
+import {PanelVendedor, PerfilVendedor, TodosLosProductos,ProducStore, ServicioStore, ServiciosVendedor, MisProductos, ProductoSeleccionado, CompraProducto} from "./pagevendedor"
 import ProductosAll from "./pageadmin/ProductosAll";
 import ProductStore from "./pagevendedor/ProductStore";
 
@@ -59,8 +59,12 @@ const App = () => {
                             <Route path="profile" element={<PerfilVendedor/>}/>
 
                             <Route path="producto" element={<TodosLosProductos/>}></Route>
+
                             <Route path="mis-productos" element={<MisProductos/>}></Route>
                             <Route path="producto/create" element={<ProducStore/>}></Route>
+                            <Route path="producto/info/:id" element={<ProductoSeleccionado/>}> </Route>
+                            <Route path="producto/compra" element={<CompraProducto/>}></Route>
+                            
 
                             <Route path="servicio" element={<ServiciosVendedor/>}></Route>
                             <Route path="servicio/create" element={<ServicioStore/>}></Route>           

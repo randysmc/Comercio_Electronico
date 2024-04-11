@@ -13,6 +13,7 @@ const ProductosVendedor = () => {
         category: '',
         name: ''
     });
+    
 
     useEffect(() => {
         getProducts();
@@ -97,8 +98,9 @@ const ProductosVendedor = () => {
                                                 <h5 className="card-title">{product.nombre}</h5>
                                                 <p className="card-text">{product.descripcion}</p>
                                                 <p className="card-text">Precio: {product.precio} {product.moneda ? product.moneda.nombre : ''}</p>
-                                                <Link to={`/vendedor/producto/edit/${product.id}`} className="btn btn-primary">
-                                                    Editar
+                                                
+                                                <Link to={`/usuario/producto/info/${product.id}`} className="btn btn-primary">
+                                                    Ver Producto
                                                 </Link>
                                             </div>
                                         </div>

@@ -86,6 +86,24 @@ class ProductoController extends Controller
         return response()->json($data,200);
     }
 
+    public function updateDisponible($id)
+    {
+        //Busca el producto por id
+        $producto = Producto::find($id);
+
+        //Verificar si el producto existe
+        if(!$producto){
+            return response()->json(['error' => 'Producto no encontrado'],404);
+        }
+
+        //Modificar 
+        $producto->disponible =0;
+        $producto->save();
+
+        return response()->json(['message' => 'Producto actualizado a no disponible']);
+
+    }
+
 
     /**
      * Show the form for editing the specified resource.
