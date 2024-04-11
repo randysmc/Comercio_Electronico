@@ -8,8 +8,12 @@ const SidebarVendedor = () => {
             <div className="list-group">
                 
                 <NavLink to={`/usuario/profile`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")}  >Perfil</NavLink>
-                <NavLink to={`/usuario/producto`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Catalogo</NavLink>
+                <NavLink to={`/usuario/producto`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Catalogo Productos</NavLink>
                 <NavLink to={`/usuario/mis-productos`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Mis productos</NavLink>
+                <NavLink to={`/usuario/producto-compra`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Productos Comprados</NavLink>
+                <NavLink to={`/usuario/servicio`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Catalogo de Servicios</NavLink>
+                <NavLink to={`/usuario/mis-servicios`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Servicios Solicitados</NavLink>
+
                 
             
             </div>

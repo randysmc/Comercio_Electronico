@@ -11,13 +11,13 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
 
 use App\Http\Controllers\Api\Usuario\ProductoController as ProductoUsuario;
+use App\Http\Controllers\Api\Usuario\ProductoCompraController as ProductoCompraUsuario;
 use App\Http\Controllers\Api\Usuario\CategoriaController as CategoriaUsuario;
 use App\Http\Controllers\Api\Usuario\ServicioController as ServicioUsuario;
 use App\Http\Controllers\Api\Usuario\UserController as UserUsuario;
 use App\Http\Controllers\Api\Usuario\TransaccionController as TransaccionUsuario;
-
-
-
+use App\Http\Controllers\Api\Usuario\TruequeController as TruequeUsuario;
+//use App\Models\Producto_Compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -66,11 +66,18 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/usuario/producto', ProductoUsuario::class);
         Route::get('/usuario/productos', [ProductoUsuario::class, 'userProducts']);
         Route::put('producto/{id}/update-disponible', [ProductoUsuario::class, 'updateDisponible']);
+
+        Route::apiResource('/usuario/producto-compra', ProductoCompraUsuario::class);
+
         Route::apiResource('/usuario/user', UserUsuario::class);
         Route::apiResource('/usuario/transaccion', TransaccionUsuario::class);
 
         Route::apiResource('/usuario/categoria', CategoriaUsuario::class);
+
         Route::apiResource('/usuario/servicio', ServicioUsuario::class);
+        Route::get('/usuario/servicios', [ServicioUsuario::class, 'userServices']);
+        Route::apiResource('/usuario/trueque', TruequeUsuario::class);
+        Route::put('servicio/{id}/update-disponible', [ServicioUsuario::class, 'updateDisponible']);
         
 
 

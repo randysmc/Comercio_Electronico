@@ -4,7 +4,7 @@ import SidebarVendedor from './SidebarVendedor';
 import { Link } from 'react-router-dom';
 import AuthUser from '../pageauth/AuthUser';
 
-const ProductosVendedor = () => {
+const TodosLosProductos = () => {
     const { getUser, getToken } = AuthUser();
     const [products, setProducts] = useState([]);
     const [categorias, setCategorias] = useState([]);
@@ -115,4 +115,4 @@ const ProductosVendedor = () => {
     );
 };
 
-export default ProductosVendedor;
+export default TodosLosProductos;

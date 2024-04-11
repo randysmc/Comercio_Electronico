@@ -40,9 +40,9 @@ const ProductoSeleccionado = () => {
             <div className="card-body">
               <h5 className="card-title">{productData.nombre}</h5>
               <p className="card-text">{productData.descripcion}</p>
-              <p className="card-text">Precio: {productData.precio} {productData.moneda_id}</p>
-              <p className='card-text'>Usuario Vendedor: {productData.user_id}</p>
-              <p>Comprador: {comprador.id}</p>
+              <p className="card-text">Precio: {productData.precio} Bitcoin</p>
+              {/*<p className='card-text'>Usuario Vendedor: {productData.user_id}</p> */}
+              {/*<p>Comprador: {comprador.id}</p> */ }
             </div>
           </div>
           <Link to='/usuario/producto' className='btn btn-secondary'>Regresar</Link>

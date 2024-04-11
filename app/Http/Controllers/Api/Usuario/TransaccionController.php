@@ -66,6 +66,8 @@ class TransaccionController extends Controller
                     // Marcar el producto como no disponible
                     $producto->disponible = false;
                     $producto->save();
+
+                    
     
                     // Realizar la suma y resta de Bitcoin si la transacción se crea correctamente
                     // Filtrar las monedas de la cartera del usuario comprador para obtener la cantidad de Bitcoin

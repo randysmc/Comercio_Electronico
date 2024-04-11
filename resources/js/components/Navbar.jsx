@@ -3,24 +3,24 @@ import AuthUser from '../pageauth/AuthUser';
 import Config from '../Config';
 
 const Navbar = () => {
-
-  const { getRol, getLogout, getToken } = AuthUser();
+  const { getUser, getLogout, getToken } = AuthUser();
 
   const logoutUser = () => {
     const token = getToken(); // Obtener el token de la función getToken
     Config.getLogout(token)
-    .then(response => {
+      .then(response => {
         console.log(response);
         getLogout(); // Llamar a la función getLogout para borrar el token de sesión almacenado
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.error("Error al realizar el logout:", error);
         // Manejar el error según sea necesario
-    });
+      });
   }
 
   const renderLinks = () => {
-    if(getToken()){
+    const user = getUser(); // Obtener los datos del usuario
+    if (getToken()) {
       return (
         <>
           <li className="nav-item">
@@ -29,9 +29,9 @@ const Navbar = () => {
           <li className="nav-item">
             <a className="nav-link" href="#" onClick={logoutUser}>Logout</a>
           </li>
-          {/* Mostrar el rol del usuario */}
+          {/* Mostrar el nombre del usuario */}
           <li className="nav-item">
-            <span className="nav-link">Rol: {getRol()}</span>
+            <span className="nav-link">Usuario: {user ? user.name : ''}</span>
           </li>
         </>
       );
