@@ -57,7 +57,7 @@ const TodosLosServicios = () => {
                                         <h5 className="card-title">{servicio.nombre}</h5>
                                         <p className="card-text">{servicio.descripcion}</p>
                                         <p className="card-text">Pago: {servicio.precio} creditos</p>
-                                        <Link to={`/vendedor/servicio/edit/${servicio.id}`} className="btn btn-primary">Editar</Link>
+                                        <Link to={`/usuario/servicio/info/${servicio.id}`} className="btn btn-primary">Ver Servicio</Link>
                                     </div>
                                 </div>
                             </div>

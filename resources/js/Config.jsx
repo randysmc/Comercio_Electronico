@@ -30,6 +30,8 @@ export default {
     getCategoriaUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/categoria/${id}`, data),
     getAdminProductAll: (token) => axiosWithAuth(token).get('/admin/producto'),
 
+    getTransaccionAll: (token) => axiosWithAuth(token).get('/admin/transaccion'),
+
     getAdminServiciosAll: (token) => axiosWithAuth(token).get('/admin/servicio'),
 
     // USER
@@ -62,6 +64,7 @@ export default {
     getServicioStore:(token, data) => axiosWithAuth(token).post(`/usuario/servicio`,data),
     getServicioUpdate:(token, data, id) =>axiosWithAuth(token).put(`/usuario/servicio/${id}`,data),
 
+    getVoluntarioStore:(token, data) => axiosWithAuth(token).post('/usuario/transaccion', data),
     //User-Cartera
 
 

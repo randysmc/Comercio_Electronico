@@ -17,11 +17,11 @@ import Register from "./pageauth/Register";
 
 
 
-import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate } from "./pageadmin";
+import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate, TransaccionAll } from "./pageadmin";
 
 import {PanelVendedor, PerfilVendedor, TodosLosProductos,ProducStore, ServicioStore,
      TodosLosServicios, MisProductos, ProductoSeleccionado, CompraProducto, 
-     ProductosComprados, MisServicios, ProductoUpdate} from "./pagevendedor"
+     ProductosComprados, MisServicios, ProductoUpdate, ServicioSeleccionado, Voluntariado} from "./pagevendedor"
 import ProductosAll from "./pageadmin/ProductosAll";
 import ProductStore from "./pagevendedor/ProductStore";
 
@@ -52,6 +52,7 @@ const App = () => {
                             <Route path="producto" element={<ProductosAll />}></Route>
                             <Route path="producto/create" element={<ProductStore/>}></Route>
                             <Route path="servicio" element={<ServiciosAll />}></Route>
+                            <Route path="transaccion" element={<TransaccionAll />}></Route>
                             
                             
                         </Route>
@@ -72,7 +73,9 @@ const App = () => {
 
                             <Route path="servicio" element={<TodosLosServicios/>}></Route>
                             <Route path="mis-servicios" element={<MisServicios/>}></Route>
-                            <Route path="servicio/create" element={<ServicioStore/>}></Route>           
+                            <Route path="servicio/create" element={<ServicioStore/>}></Route> 
+                            <Route path="servicio/info/:id" element={<ServicioSeleccionado/>}></Route>
+                            <Route path="servicio/trueque" element={<Voluntariado/>}></Route>       
 
                             
                         </Route>

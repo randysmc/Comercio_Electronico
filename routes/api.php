@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Admin\MonedaController;
 use App\Http\Controllers\Api\Admin\ProductoController;
 use App\Http\Controllers\Api\Admin\ServicioController;
 use App\Http\Controllers\Api\Admin\UserController;
+use App\Http\Controllers\Api\Admin\TransaccionController;
 
 use App\Http\Controllers\Api\FrontController;
 use App\Http\Controllers\Api\AuthController;
@@ -60,6 +61,7 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/admin/categoria', CategoriaController::class);
         Route::apiResource('/admin/producto', ProductoController::class);
         Route::apiResource('/admin/servicio', ServicioController::class);
+        Route::apiResource('/admin/transaccion', TransaccionController::class);
 
         //User
 

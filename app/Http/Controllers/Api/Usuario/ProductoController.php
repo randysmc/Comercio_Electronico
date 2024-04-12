@@ -18,25 +18,28 @@ class ProductoController extends Controller
      {
          // Obtener el ID del usuario autenticado
          $userId = auth()->id();
-     
+      
          // Obtener todos los productos excluyendo los productos del usuario autenticado
-         $productos = Producto::with('categoria', 'moneda')
+         $productos = Producto::with('categoria', 'moneda', 'user') // Incluir la relación con el usuario propietario del producto
+             ->select('id', 'nombre', 'descripcion', 'precio', 'urlfoto', 'user_id', 'moneda_id', 'categoria_id') // Seleccionar los campos deseados, incluyendo categoria_id
              ->where('user_id', '!=', $userId)
              ->where('disponible', 1) // Filtrar por productos disponibles
              ->get();
-     
+      
          return response()->json($productos, 200);
      }
      
-
-    public function userProducts()
-    {
-        $userId = Auth::id();
-        
-        $data = Producto::with(['moneda', 'categoria'])->where('user_id', $userId)->get();
-
-        return response()->json($data, 200);
-    }
+     
+     public function userProducts()
+     {
+         $userId = Auth::id();
+         
+         $data = Producto::with(['moneda', 'categoria'])->select('id', 'nombre', 'descripcion', 'precio', 'urlfoto', 'user_id', 'moneda_id')
+                     ->where('user_id', $userId)
+                     ->get();
+     
+         return response()->json($data, 200);
+     }
 
     /**
      * Show the form for creating a new resource.

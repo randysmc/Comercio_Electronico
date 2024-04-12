@@ -47,7 +47,7 @@ const TodosLosProductos = () => {
 
     const filteredProducts = products.filter((product) => {
         return (
-            (!filter.category || product.categoria === filter.category) &&
+            (!filter.category || product.categoria_id === parseInt(filter.category)) &&
             (!filter.name || product.nombre.toLowerCase().includes(filter.name.toLowerCase()))
         );
     });
@@ -96,8 +96,10 @@ const TodosLosProductos = () => {
                                             <img src={product.urlfoto} className="card-img-top" alt={product.nombre} />
                                             <div className="card-body">
                                                 <h5 className="card-title">{product.nombre}</h5>
-                                                <p className="card-text">{product.descripcion}</p>
+                                                {/**<p className="card-text">{product.descripcion}</p> */}
                                                 <p className="card-text">Precio: {product.precio} {product.moneda ? product.moneda.nombre : ''}</p>
+                                                <p className="card-text">Categoría: {product.categoria ? product.categoria.nombre : ''}</p>
+                                                <p className="card-text">Vendedor: {product.user && product.user.name}</p>
                                                 
                                                 <Link to={`/usuario/producto/info/${product.id}`} className="btn btn-primary">
                                                     Ver Producto
@@ -113,6 +115,7 @@ const TodosLosProductos = () => {
             </div>
         </div>
     );
+    
 };
 
 export default TodosLosProductos;
