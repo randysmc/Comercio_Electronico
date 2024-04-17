@@ -9,34 +9,40 @@ const Voluntariado = () => {
     const user = getUser();
 
     const params = new URLSearchParams(window.location.search);
-    const horas = params.get('horas');
-    const user_id_vendedor = params.get('user_id_vendedor');
+    const creditos = params.get('precio');
+    const user_id_publicador = params.get('user_id_publicador');
     const id_servicio = params.get('id_servicio');
+    const [mensajeServidor, setMensajeServidor] = useState('');
 
     // Obtener el id del usuario autenticado
-    const user_id_comprador = user.id;
+    const user_id_voluntario = user.id;
 
     const navigate = useNavigate();
 
     const realizarVoluntariado = async () => {
         try {
             // Realizar la transacción de voluntariado
-            console.log("Horas:", horas);
-            console.log("ID del vendedor:", user_id_vendedor);
-            console.log("ID del comprador:", user_id_comprador);
-            console.log("ID del servicio:", id_servicio);
-            await Config.getVoluntarioStore(getToken(), {
-                horas,
-                user_id_vendedor,
-                user_id_comprador,
+            const response = await Config.getVoluntarioStore(getToken(), {
+                creditos,
+                user_id_publicador,
+                user_id_voluntario,
                 id_servicio,
             });
 
-            // Redirigir al usuario a la página "/usuario"
-            navigate('/usuario');
+            if (response.status === 200) {
+                const message = response.data.message;
+                setMensajeServidor(message);
+                navigate('/usuario');
+            } else if (response.status === 400) {
+                setMensajeServidor('El usuario solicitante no tiene suficientes créditos');
+            } else if (response.status === 401) {
+                setMensajeServidor('Usuario no autenticado');
+            } else if (response.status === 500) {
+                setMensajeServidor('Error en el servidor');
+            }
         } catch (error) {
             console.error("Error al realizar el voluntariado:", error);
-            // Manejar el error según sea necesario
+            setMensajeServidor('Error al realizar el voluntariado. Por favor, inténtelo de nuevo más tarde.');
         }
     };
 
@@ -53,25 +59,30 @@ const Voluntariado = () => {
                             <form>
                                 {/* Mostrar los datos del servicio */}
                                 <div className="mb-3">
-                                    <label htmlFor="horas" className="form-label">Horas:</label>
-                                    <input type="text" id="horas" name="horas" className="form-control" value={horas} readOnly />
+                                    <label htmlFor="creditos" className="form-label">Creditos:</label>
+                                    <input type="text" id="creditos" name="horas" className="form-control" value={creditos} readOnly />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="user_id_vendedor" className="form-label">ID del Vendedor:</label>
-                                    <input type="text" id="user_id_vendedor" name="user_id_vendedor" className="form-control" value={user_id_vendedor} readOnly />
+                                    <label htmlFor="user_id_publicador" className="form-label">ID del Publicador:</label>
+                                    <input type="text" id="user_id_publicador" name="user_id_publicador" className="form-control" value={user_id_publicador} readOnly />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="id_servicio" className="form-label">ID del Servicio:</label>
                                     <input type="text" id="id_servicio" name="id_servicio" className="form-control" value={id_servicio} readOnly />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="id_comprador" className="form-label">ID del Comprador:</label>
-                                    <input type="text" id="id_comprador" name="id_comprador" className="form-control" value={user_id_comprador} readOnly />
+                                    <label htmlFor="id_voluntario" className="form-label">ID del Voluntario:</label>
+                                    <input type="text" id="id_voluntario" name="id_voluntario" className="form-control" value={user_id_voluntario} readOnly />
                                 </div>
                                 <div className="btn-group mt-3">
                                     <Link to={-1} className='btn btn-secondary'> Regresar </Link>
                                     <button type="button" className="btn btn-primary" onClick={realizarVoluntariado}>Realizar Voluntariado</button>
                                 </div>
+                                {mensajeServidor && (
+                                    <div className={`alert alert-${obtenerClaseAlerta(mensajeServidor)} mt-3`} role="alert">
+                                    <strong>Mensaje:</strong> {mensajeServidor}
+                                    </div>
+                                )}
                             </form>
                         </div>
                     </div>
@@ -79,6 +90,16 @@ const Voluntariado = () => {
             </div>
         </div>
     );
+
+    function obtenerClaseAlerta(mensaje){
+        if (mensaje.includes("Voluntariado realizado exitosamente")) {
+            return "success";
+          } else if (mensaje.includes("Usuario no autenticado") || mensaje.includes("Error")) {
+            return "danger";
+          } else {
+            return "warning"; // Default class for other messages
+          }
+    }
 };
 
 export default Voluntariado;

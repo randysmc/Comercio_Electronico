@@ -8,6 +8,7 @@ const ServicioSeleccionado = () => {
     const {getToken, getUser} = AuthUser()
     const { id } = useParams();
     const [servicio, setServicio] = useState(null);
+    const voluntario = getUser();
 
     useEffect(() => {
         // Función para obtener detalles del servicio por su ID
@@ -40,7 +41,7 @@ const ServicioSeleccionado = () => {
                             <p className="card-text">Pago: {servicio.precio} créditos</p>
                             {/* Agregar aquí más detalles del servicio si es necesario */}
                             <Link to='/usuario/producto' className='btn btn-secondary'>Regresar</Link>
-                           {/** <Link to={`/usuario/servicio/compra?precio=${servicioData.precio}&user_id_vendedor=${servicioData.user_id}&user_id_comprador=${comprador.id}&id_servicio=${servicioData.id}`} className='btn btn-primary'>Comprar</Link> */}
+                            { <Link to={`/usuario/servicio/trueque?precio=${servicio.precio}&user_id_publicador=${servicio.user_id}&user_id_voluntario=${voluntario.id}&id_servicio=${servicio.id}`} className='btn btn-primary'>Realizar</Link>}
 
                         </div>
                     </div>

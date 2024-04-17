@@ -45,9 +45,9 @@ class TruequeController extends Controller
         try {
             // Verificar si el usuario está autenticado
             if (Auth::check()) {
-                // Obtener el usuario publicador y voluntario
-                $userPublicador = Auth::user();
-                $userVoluntario = User::find($request->input('user_id_voluntario'));
+    
+                $userVoluntario = User::find($request->input('user_id_voluntario'))->load('cartera.monedasCartera.moneda');
+                $userPublicador = User::find($request->input('user_id_publicador'))->load('cartera.monedasCartera.moneda');
     
                 // Obtener los demás datos de la solicitud
                 $creditos = $request->input('creditos');
@@ -69,24 +69,33 @@ class TruequeController extends Controller
     
                     // Guardar el trueque en la base de datos
                     $trueque->save();
-    
-                    // Acceder a la cartera del usuario voluntario y sumar los créditos
-                    $userVoluntario->cartera->monedasCartera->firstWhere('moneda_id', 3)->cantidad += $creditos;
-                    $userVoluntario->cartera->monedasCartera->firstWhere('moneda_id', 3)->save();
-    
-                    // Restar los créditos del trueque de la cartera del usuario publicador
-                    $userPublicador->cartera->monedasCartera->firstWhere('moneda_id', 3)->cantidad -= $creditos;
-                    $userPublicador->cartera->monedasCartera->firstWhere('moneda_id', 3)->save();
-    
-                    // Cambiar el estado del servicio a no disponible
-                    $servicio->disponible = 0;
+                    $servicio->disponible = false;
                     $servicio->save();
     
-                    // Retornar una respuesta con un mensaje de éxito y los detalles del trueque creado
-                    return response()->json([
-                        'message' => 'Trueque guardado exitosamente',
-                        'trueque' => $trueque,
-                    ], 200);
+                    //Realizamos la transaccion de creditos si el trueque se realizao correctamente
+                    $creditosCantidadVoluntario = $userVoluntario->cartera->monedasCartera->firstWhere('moneda_id', 3)->cantidad;
+                    $creditosPublicador = $userPublicador->cartera->monedasCartera->firstWhere('moneda_id', 3)->cantidad;
+    
+                    //Verficamos si el usuario solicitante tiene suficientes creditos para pagar
+                    if($creditosPublicador >= $creditos){
+                        $userPublicador->cartera->monedasCartera->firstWhere('moneda_id',3)->cantidad -= $creditos;
+                        $userPublicador->cartera->monedasCartera->firstWhere('moneda_id',3)->save();
+    
+                        $userVoluntario->cartera->monedasCartera->firstWhere('moneda_id',3)->cantidad += $creditos;
+                        $userVoluntario->cartera->monedasCartera->firstWhere('moneda_id',3)->save();
+    
+                        return response()->json([
+                            'message' => 'Voluntariado realizado exitosamente',
+                            'trueque' => $trueque,
+                        ], 200);
+                    } else{
+                        //Si no tiene suficiente dinero
+                        $trueque->delete();
+    
+                        return response()->json([
+                            'message' => 'El usuario solicitante no tiene suficientes créditos'
+                        ], 400);
+                    }
                 } else {
                     // Si el servicio no está disponible, retornar un mensaje de error
                     return response()->json([
@@ -106,6 +115,8 @@ class TruequeController extends Controller
             ], 500);
         }
     }
+    
+    
     
 
     /**

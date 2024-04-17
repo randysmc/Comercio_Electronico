@@ -64,7 +64,7 @@ export default {
     getServicioStore:(token, data) => axiosWithAuth(token).post(`/usuario/servicio`,data),
     getServicioUpdate:(token, data, id) =>axiosWithAuth(token).put(`/usuario/servicio/${id}`,data),
 
-    getVoluntarioStore:(token, data) => axiosWithAuth(token).post('/usuario/transaccion', data),
+    getVoluntarioStore:(token, data) => axiosWithAuth(token).post('/usuario/trueque', data),
     //User-Cartera
 
 
