@@ -86,7 +86,7 @@ class ProductoController extends Controller
      * Display the specified resource.
      */
     public function show($id){
-        $data = Producto::find($id);
+        $data = Producto::with('moneda', 'user')->find(@$id);
         return response()->json($data,200);
     }
 

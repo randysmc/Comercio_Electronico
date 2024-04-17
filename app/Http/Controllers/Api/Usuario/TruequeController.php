@@ -60,7 +60,7 @@ class TruequeController extends Controller
                 if ($servicio && $servicio->disponible == 1) {
                     // Crear un nuevo trueque
                     $trueque = new Trueque([
-                        'fecha' => now(),
+                        'fecha' => now()->toDateTimeString(),
                         'creditos' => $creditos,
                         'user_id_publicador' => $user_id_publicador,
                         'user_id_voluntario' => $user_id_voluntario,

@@ -54,6 +54,7 @@ class TransaccionController extends Controller
                 if ($producto && $producto->disponible == 1) {
                     // Crear una nueva transacción
                     $transaccion = new Transaccion([
+                        'fecha' => now()->toDateTimeString(),
                         'dinero' => $dinero,
                         'user_id_vendedor' => $user_id_vendedor,
                         'user_id_comprador' => $user_id_comprador,

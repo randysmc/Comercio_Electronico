@@ -82,7 +82,8 @@ class ServicioController extends Controller
 
     public function show($id)
     {
-        $data = Servicio::find($id);
+        //$data = Servicio::find($id);
+        $data = Servicio::with('moneda', 'user')->find($id);
         return response()->json($data, 200);
     }
 
