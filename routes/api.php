@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\Admin\ServicioController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\TransaccionController;
 use App\Http\Controllers\Api\Admin\ReporteController;
-
+use App\Http\Controllers\Api\Admin\TruequeController;
 use App\Http\Controllers\Api\FrontController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
@@ -66,11 +66,19 @@ Route::prefix('v1')->group(function () {
         Route::put('/admin/producto-no-aprobado/{id}', [ProductoController::class, 'aprobarProducto']);
         Route::apiResource('/admin/servicio', ServicioController::class);
         Route::apiResource('/admin/transaccion', TransaccionController::class);
-        Route::get('/admin/reporte-usuarios',[ReporteController::class, 'reporteUsuarios'] );
+        Route::apiResource('/admin/trueque', TruequeController::class);
+        Route::get('/admin/reporte-usuarios', [ReporteController::class, 'reporteUsuarios']);
         Route::get('/admin/reporte-productos', [ReporteController::class, 'reporteProductos']);
-        Route::get('/admin/transaccion-dinero', [TransaccionController::class, 'totalDineroPorUsuario']);
-        Route::get('/admin/transaccion-productos-comprados', [TransaccionController::class, 'cantidadProductosCompradosPorUsuario']);
-        Route::get('/admin/transaccion-categorias', [TransaccionController::class, 'categoriasMasRepetidas']);
+
+        Route::get('/admin/transaccion-total-dinero-por-usuario', [TransaccionController::class, 'totalDineroPorUsuario']);
+        Route::get('/admin/transaccion-cantidad-productos-comprados', [TransaccionController::class, 'cantidadProductosCompradosPorUsuario']);
+        Route::get('/admin/transaccion-categorias-mas-repetidas', [TransaccionController::class, 'categoriasMasRepetidas']);
+        Route::get('/admin/transaccion-promedio-dinero-gastado-por-usuario', [TransaccionController::class, 'promedioDineroGastadoPorUsuario']);
+        Route::get('/admin/transaccion-cantidad-transacciones-por-usuario', [TransaccionController::class, 'cantidadTransaccionesPorUsuario']);
+        Route::get('/admin/transaccion-productos-mas-vendidos', [TransaccionController::class, 'productosMasVendidos']);
+        Route::get('/admin/transaccion-total-dinero-ganado-por-categoria', [TransaccionController::class, 'totalDineroGanadoPorCategoria']);
+        Route::get('/admin/transaccion-usuarios-que-mas-han-vendido', [TransaccionController::class, 'usuariosQueMasHanVendido']);
+        Route::get('/admin/transaccion-distribucion-ventas-por-mes', [TransaccionController::class, 'distribucionVentasPorMes']);
         #Route::get('/admin/reporte-productos', [TransaccionController::class, 'reporteProductos']);
 
 
@@ -91,7 +99,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/usuario/servicios', [ServicioUsuario::class, 'userServices']);
         Route::apiResource('/usuario/trueque', TruequeUsuario::class);
         Route::put('servicio/{id}/update-disponible', [ServicioUsuario::class, 'updateDisponible']);
-        
+
         Route::apiResource('/usuario/inbox', InboxUsuario::class);
         Route::get('/usuario/conversaciones', [InboxUsuario::class, 'getMensajesPorUsuario']);
 
@@ -114,3 +122,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //vamos a tener dos tipos de rutas
 //publicas y privadas
+

@@ -12,7 +12,10 @@ const Sidebar = () => {
                 <NavLink to={`/admin/producto`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Productos</NavLink>
                 <NavLink to={`/admin/producto-no-aprobado`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Productos para aprobar</NavLink>
                 <NavLink to={`/admin/servicio`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Servicios</NavLink>
-                <NavLink to={`/admin/transaccion`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Transacciones</NavLink>
+                <NavLink to={`/admin/reportes`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Reportes de usuarios</NavLink>
+                <NavLink to={`/admin/ventas`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Lista de Ventas</NavLink>
+                <NavLink to={`/admin/voluntariados`} className={({isActive}) => (isActive ? "list-group-item active" : "list-group-item ")} >Lista de Voluntariados</NavLink>
+                
             </div>
         </div>
 

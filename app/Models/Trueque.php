@@ -17,12 +17,12 @@ class Trueque extends Model
 
     public function userPublicador(): BelongsTo
     {
-        return $this->belongsTo(Servicio::class, 'user_id_publicador');
+        return $this->belongsTo(User::class, 'user_id_publicador'); // Corregir la referencia al modelo User
     }
 
     public function userVoluntario(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id_voluntario');
+        return $this->belongsTo(User::class, 'user_id_voluntario'); // Corregir la referencia al modelo User
     }
 
     public function servicio(): BelongsTo

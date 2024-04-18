@@ -18,7 +18,7 @@ import Register from "./pageauth/Register";
 
 
 
-import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate, TransaccionAll, ProductosNoAprobados, ProductUpdate } from "./pageadmin";
+import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate, TransaccionAll, ProductosNoAprobados, ProductUpdate, Ventas, Voluntariados } from "./pageadmin";
 
 import {PanelVendedor, PerfilVendedor, 
         TodosLosProductos, MisProductos, ProducStore, ProductoSeleccionado, CompraProducto, ProductosComprados, ProductoUpdate,
@@ -59,7 +59,10 @@ const App = () => {
                             <Route path="producto-no-aprobado" element={<ProductosNoAprobados/>}></Route>
 
                             <Route path="servicio" element={<ServiciosAll />}></Route>
-                            <Route path="transaccion" element={<TransaccionAll />}></Route>
+                            <Route path="reportes" element={<TransaccionAll />}></Route>
+                            <Route path="ventas" element={<Ventas />}></Route>
+                            <Route path="voluntariados" element={<Voluntariados />}></Route>
+
                             
                             
                         </Route>

@@ -37,8 +37,20 @@ export default {
 
 
     getTransaccionAll: (token) => axiosWithAuth(token).get('/admin/transaccion'),
+    getTruequeAll: (token) => axiosWithAuth(token).get('/admin/trueque'),
 
     getAdminServiciosAll: (token) => axiosWithAuth(token).get('/admin/servicio'),
+
+    //Transacciones
+    getTransaccionTotalDineroPorUsuario:(token)=> axiosWithAuth(token).get(`/admin/transaccion-total-dinero-por-usuario`),
+    getTransaccionCantidadProductosComprados:(token)=> axiosWithAuth(token).get(`/admin/transaccion-cantidad-productos-comprados`),
+    getTransaccionCaterogiasMasRepetidas:(token)=> axiosWithAuth(token).get(`/admin/transaccion-categorias-mas-repetidas'`),
+    getTransaccionPromedioDineroGastado:(token)=> axiosWithAuth(token).get(`/admin/transaccion-promedio-dinero-gastado-por-usuario`),
+    getTransaccionCantidadTransacciones:(token)=> axiosWithAuth(token).get(`/admin/transaccion-cantidad-transacciones-por-usuario`),
+    getTransaccionProductosMasVendidos:(token)=> axiosWithAuth(token).get(`/admin/transaccion-productos-mas-vendidos`),
+    getTransaccionTotalDineroPorCategoria:(token)=> axiosWithAuth(token).get(`/admin/transaccion-total-dinero-ganado-por-categoria`),
+    getTransaccionUsuariosMasVentas:(token)=> axiosWithAuth(token).get(`/admin/transaccion-usuarios-que-mas-han-vendido'`),
+    getTransaccionDistribucionVentasPorMes:(token)=> axiosWithAuth(token).get(`/admin/transaccion-distribucion-ventas-por-mes`),
 
 
 
@@ -83,6 +95,9 @@ export default {
     //getInboxAll: (token)=> axiosWithAuth(token).get(`/usuario/inbox`),
     getInboxStore: (token, data) => axiosWithAuth(token).post(`/usuario/inbox`, data),
     getInboxConversacion:(token)=>axiosWithAuth(token).get(`/usuario/conversaciones`),
+
+
+
 
 
 };
