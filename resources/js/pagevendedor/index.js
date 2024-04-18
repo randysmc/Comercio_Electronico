@@ -12,8 +12,13 @@ import MisServicios from './MisServicios'
 import ProductoUpdate from './ProductoUpdate'
 import ServicioSeleccionado from './ServicioSeleccionado'
 import Voluntariado from './Voluntariado'
+import InboxAll from './InboxAll'
+import InboxStore from './InboxStore'
 
 
-export {PanelVendedor, PerfilVendedor, TodosLosProductos, MisProductos, 
-    ProducStore, ServicioStore, TodosLosServicios, ProductoSeleccionado, 
-    CompraProducto, ProductosComprados, MisServicios, ProductoUpdate, ServicioSeleccionado, Voluntariado};
+
+export {PanelVendedor, PerfilVendedor, 
+    TodosLosProductos, MisProductos, ProducStore, ProductoSeleccionado, CompraProducto, ProductosComprados, ProductoUpdate,
+    TodosLosServicios, MisServicios, ServicioStore, ServicioSeleccionado, Voluntariado,
+    InboxAll, InboxStore
+};

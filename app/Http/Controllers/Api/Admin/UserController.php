@@ -5,26 +5,44 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Psy\Readline\Hoa\Console;
 
 class UserController extends Controller
 {
     //Me muestra todos los usuarios
+    //public function index()
+    //{
+    // Obtener todos los usuarios con sus relaciones de cartera y monedaCartera cargadas
+    //  $data = User::with('cartera.monedasCartera.moneda')->get();
+
+    //return response()->json($data, 200);
+    //}
+
+
+
     public function index()
     {
-        // Obtener todos los usuarios con sus relaciones de cartera y monedaCartera cargadas
-        $data = User::with('cartera.monedasCartera.moneda')->get();
-        
+        // Obtener el ID del usuario autenticado
+        $userId = Auth::id();
+
+        // Obtener todos los usuarios con sus relaciones de cartera y monedaCartera cargadas, excluyendo al usuario autenticado
+        $data = User::with('cartera.monedasCartera.moneda')
+            ->where('id', '!=', $userId)
+            ->get();
+
         return response()->json($data, 200);
     }
 
+
     //Me muestra solo un usuario por ID
-    public function show($id){
+    public function show($id)
+    {
         $data = User::find($id);
         return response()->json($data, 200);
     }
 
-    
+
     public function getCartera(Request $request)
     {
         $user = $request->user(); // Obtener el usuario autenticado
@@ -41,17 +59,18 @@ class UserController extends Controller
     }
 
     //para actualizar
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         //validación de datos
 
         $data = User::find($id);
-        $data-> fill($request->all());
-        $data-> save();
+        $data->fill($request->all());
+        $data->save();
 
         return response()->json($data, 200);
     }
 
-    public function store(Request $request){
-        
+    public function store(Request $request)
+    {
     }
 }

@@ -28,16 +28,28 @@ export default {
     getCategoriaAll: (token) => axiosWithAuth(token).get('/admin/categoria'),
     getCategoriaStore: (token, data) => axiosWithAuth(token).post('/admin/categoria', data),
     getCategoriaUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/categoria/${id}`, data),
-    getAdminProductAll: (token) => axiosWithAuth(token).get('/admin/producto'),
+    
+    
+    getAdminProductAll: (token) => axiosWithAuth(token).get(`/admin/producto`),
+    getAdminProductNoPublicado:(token)=>axiosWithAuth(token).get(`/admin/producto-no-aprobado`),
+    getAdminProductUpdate: (token, data, id) => axiosWithAuth(token).put(`/admin/producto-no-aprobado/${id}`, data),
+    getAdminProductById: (token, id) => axiosWithAuth(token).get(`/usuario/producto/${id}`),
+
 
     getTransaccionAll: (token) => axiosWithAuth(token).get('/admin/transaccion'),
 
     getAdminServiciosAll: (token) => axiosWithAuth(token).get('/admin/servicio'),
 
+
+
+
+
+
     // USER
 
     //User-usuario
     //getUsuarioById: (token, id) => axiosWithAuth(token).get(`/usuario/user/${id}`),
+
     getUsuario:(token)=>axiosWithAuth(token).get(`usuario/user`),
     getUsuarioCartera: (token) => axiosWithAuth(token).get(`/usuario/user/cartera`),
     getUsuarioUpdate: (token, data, id) => axiosWithAuth(token).get(`/usuario/user/${id}`, data),
@@ -66,6 +78,11 @@ export default {
 
     getVoluntarioStore:(token, data) => axiosWithAuth(token).post('/usuario/trueque', data),
     //User-Cartera
+
+    //User-Inbox
+    //getInboxAll: (token)=> axiosWithAuth(token).get(`/usuario/inbox`),
+    getInboxStore: (token, data) => axiosWithAuth(token).post(`/usuario/inbox`, data),
+    getInboxConversacion:(token)=>axiosWithAuth(token).get(`/usuario/conversaciones`),
 
 
 };

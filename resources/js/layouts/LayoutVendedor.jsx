@@ -33,12 +33,20 @@ const LayoutVendedor = () => {
     };
 
     return (
-        <div>
+        <div className="flex flex-col min-h-screen">
             <Navbar rol={getRolName()} />
-            <Outlet />
+            <div className="container mx-auto flex-grow">
+                <div className="bg-blue-200 p-4 mb-4 rounded-md">
+                    <p className="text-lg text-center text-blue-900">
+                        Bienvenido a nuestra plataforma de comercio electrónico. Aquí puedes comprar, vender, ofrecer servicios, realizar transacciones seguras y comunicarte con otros usuarios. ¡Disfruta tu experiencia de compra y venta!
+                    </p>
+                </div>
+                <Outlet />
+            </div>
             <Footer />
         </div>
     );
 };
 
 export default LayoutVendedor;
+

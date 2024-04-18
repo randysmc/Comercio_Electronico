@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import Config from '../Config';
 import Sidebar from "./Sidebar";
 import { Link } from 'react-router-dom';
 import AuthUser from '../pageauth/AuthUser';
 
-const ProductosAll = () => {
+const ProductosNoAprobados = () => {
     const { getUser, getToken } = AuthUser();
     const [products, setProducts] = useState([]);
 
@@ -14,11 +14,21 @@ const ProductosAll = () => {
 
     const getAllProducts = async() =>{
         try {
-            const response = await Config.getAdminProductAll(getToken());
+            const response = await Config.getAdminProductNoPublicado(getToken());
             const userProducts = response.data;
             setProducts(userProducts);
         } catch (error) {
             console.error("Error al obtener productos:", error);
+        }
+    }
+
+    const handleApprove = async (id) => {
+        try {
+            await Config.getAdminProductUpdate(getToken(), { publicado: 1 }, id);
+            // Actualizar la lista de productos después de la aprobación
+            getAllProducts();
+        } catch (error) {
+            console.error("Error al aprobar el producto:", error);
         }
     }
 
@@ -44,10 +54,11 @@ const ProductosAll = () => {
                                                     <p><strong>Vendedor:</strong> {product.user.name}</p>
                                                     <p><strong>Categoría:</strong> {product.categoria.nombre}</p>
                                                     <p><strong>Precio:</strong> {product.precio}</p>
+                                                    <p><strong>Descripcion:</strong>{product.descripcion}</p>
                                                     <p><strong>Estado:</strong> {product.publicado ? 'Aprobado' : 'No aprobado'}</p>
-                                                    <Link to={`/admin/producto/edit/${product.id}`} className="btn btn-primary">
-                                                        Editar
-                                                    </Link>
+                                                    <button onClick={() => handleApprove(product.id)} className="btn btn-primary">
+                                                        Aprobar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </li>
@@ -62,4 +73,4 @@ const ProductosAll = () => {
     );
 };
 
-export default ProductosAll;
+export default ProductosNoAprobados

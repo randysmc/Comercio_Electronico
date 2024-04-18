@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaccions', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha')->default(now()); // Valor predeterminado es la fecha actual
+            $table->dateTime('fecha')->default(now()); // Valor predeterminado es la fecha actual
             $table->decimal('dinero', 10, 2);
             $table->foreignId('user_id_vendedor')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id_comprador')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

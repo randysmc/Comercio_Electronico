@@ -86,4 +86,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Producto_Compra::class, 'user_id_comprador');
     }
+
+
+
+    public function mensajesEnviados(): HasMany
+    {
+        return $this->HasMany(Inbox::class, 'user_id_remitente');
+    }
+
+    public function mensajesRecibidos(): HasMany
+    {
+        return $this->HasMany(Inbox::class, 'user_id_destinatario');
+    }
 }

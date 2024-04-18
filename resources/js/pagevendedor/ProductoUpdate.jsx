@@ -46,7 +46,7 @@ const ProductoUpdate = () => {
                 precio: productData.precio, 
                 disponible: productData.disponible ? 1 : 0 
             };
-            await Config.updateProduct(getToken(), data, id);
+            await Config.getProductoUpdate(getToken(), data, id);
             navigate('/usuario/mis-productos');
         } catch (error) {
             console.error("Error al actualizar producto:", error);

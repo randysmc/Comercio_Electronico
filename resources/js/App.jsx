@@ -8,6 +8,7 @@ import LayoutVendedor from "./layouts/LayoutVendedor";
 
 
 import PageHome from "./pagepublic/PageHome";
+import About from "./pagepublic/About";
 import ProtectedRoutes from "./pageauth/ProtectedRoutes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -17,11 +18,13 @@ import Register from "./pageauth/Register";
 
 
 
-import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate, TransaccionAll } from "./pageadmin";
+import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate, TransaccionAll, ProductosNoAprobados, ProductUpdate } from "./pageadmin";
 
-import {PanelVendedor, PerfilVendedor, TodosLosProductos,ProducStore, ServicioStore,
-     TodosLosServicios, MisProductos, ProductoSeleccionado, CompraProducto, 
-     ProductosComprados, MisServicios, ProductoUpdate, ServicioSeleccionado, Voluntariado} from "./pagevendedor"
+import {PanelVendedor, PerfilVendedor, 
+        TodosLosProductos, MisProductos, ProducStore, ProductoSeleccionado, CompraProducto, ProductosComprados, ProductoUpdate,
+        TodosLosServicios, MisServicios, ServicioStore, ServicioSeleccionado, Voluntariado,
+        InboxAll, InboxStore} from "./pagevendedor"
+
 import ProductosAll from "./pageadmin/ProductosAll";
 import ProductStore from "./pagevendedor/ProductStore";
 
@@ -37,6 +40,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<LayoutPublic />}>
                         <Route index element={<PageHome />} />
+                        <Route path="/about" element = {<About />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                     </Route>
@@ -50,7 +54,10 @@ const App = () => {
                             <Route path="categoria" element={<CategoriaAll />}></Route>
                             <Route path="categoria/create" element={<CategoriaStore/>}></Route>
                             <Route path="producto" element={<ProductosAll />}></Route>
+                            <Route path="producto/edit/:id" element={<ProductUpdate />}></Route>
                             <Route path="producto/create" element={<ProductStore/>}></Route>
+                            <Route path="producto-no-aprobado" element={<ProductosNoAprobados/>}></Route>
+
                             <Route path="servicio" element={<ServiciosAll />}></Route>
                             <Route path="transaccion" element={<TransaccionAll />}></Route>
                             
@@ -76,6 +83,9 @@ const App = () => {
                             <Route path="servicio/create" element={<ServicioStore/>}></Route> 
                             <Route path="servicio/info/:id" element={<ServicioSeleccionado/>}></Route>
                             <Route path="servicio/trueque" element={<Voluntariado/>}></Route>       
+
+                            <Route path="inbox" element={<InboxAll/>}></Route>
+                            <Route path="inbox/create" element={<InboxStore/>}></Route>
 
                             
                         </Route>

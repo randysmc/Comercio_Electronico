@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('inboxes', function (Blueprint $table) {
             $table->id();
             $table->text('contenido');
-            $table->date('fecha');
+            $table->dateTime('fecha')->default(now());
             $table->foreignId('user_id_remitente')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id_destinatario')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });

@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\Usuario\ServicioController as ServicioUsuario;
 use App\Http\Controllers\Api\Usuario\UserController as UserUsuario;
 use App\Http\Controllers\Api\Usuario\TransaccionController as TransaccionUsuario;
 use App\Http\Controllers\Api\Usuario\TruequeController as TruequeUsuario;
+use App\Http\Controllers\Api\Usuario\InboxController as InboxUsuario;
 //use App\Models\Producto_Compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,8 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/admin/user', UserController::class);
         Route::apiResource('/admin/categoria', CategoriaController::class);
         Route::apiResource('/admin/producto', ProductoController::class);
+        Route::get('/admin/producto-no-aprobado', [ProductoController::class, 'productosNoPublicados']);
+        Route::put('/admin/producto-no-aprobado/{id}', [ProductoController::class, 'aprobarProducto']);
         Route::apiResource('/admin/servicio', ServicioController::class);
         Route::apiResource('/admin/transaccion', TransaccionController::class);
 
@@ -81,6 +84,8 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/usuario/trueque', TruequeUsuario::class);
         Route::put('servicio/{id}/update-disponible', [ServicioUsuario::class, 'updateDisponible']);
         
+        Route::apiResource('/usuario/inbox', InboxUsuario::class);
+        Route::get('/usuario/conversaciones', [InboxUsuario::class, 'getMensajesPorUsuario']);
 
 
 

@@ -6,20 +6,19 @@ const Navbar = () => {
   const { getUser, getLogout, getToken } = AuthUser();
 
   const logoutUser = () => {
-    const token = getToken(); // Obtener el token de la función getToken
+    const token = getToken();
     Config.getLogout(token)
       .then(response => {
         console.log(response);
-        getLogout(); // Llamar a la función getLogout para borrar el token de sesión almacenado
+        getLogout();
       })
       .catch(error => {
         console.error("Error al realizar el logout:", error);
-        // Manejar el error según sea necesario
       });
   }
 
   const renderLinks = () => {
-    const user = getUser(); // Obtener los datos del usuario
+    const user = getUser();
     if (getToken()) {
       return (
         <>
@@ -27,11 +26,10 @@ const Navbar = () => {
             <a className="nav-link" href={`/usuario`} >Acciones</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#" onClick={logoutUser}>Logout</a>
-          </li>
-          {/* Mostrar el nombre del usuario */}
-          <li className="nav-item">
             <span className="nav-link">Usuario: {user ? user.name : ''}</span>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={logoutUser}>Logout</a>
           </li>
         </>
       );
@@ -56,11 +54,13 @@ const Navbar = () => {
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">Home</a>
+              <a className="nav-link active" aria-current="page" href="/about">About</a>
             </li>
+          </ul>
+          <ul className="navbar-nav">
             {renderLinks()}
           </ul>
         </div>

@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <p className="text-center">La aplicación más increíble de todas</p>
+            <p className="text-center">Marca Registrada</p>
           </div>
         </div>
       </div>
