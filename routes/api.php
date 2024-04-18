@@ -20,6 +20,8 @@ use App\Http\Controllers\Api\Usuario\UserController as UserUsuario;
 use App\Http\Controllers\Api\Usuario\TransaccionController as TransaccionUsuario;
 use App\Http\Controllers\Api\Usuario\TruequeController as TruequeUsuario;
 use App\Http\Controllers\Api\Usuario\InboxController as InboxUsuario;
+use App\Http\Controllers\Api\Usuario\MonedaCarteraController as UsuarioMonedaCarteraController;
+use App\Http\Controllers\MonedaCarteraController;
 //use App\Models\Producto_Compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -104,7 +106,9 @@ Route::prefix('v1')->group(function () {
         Route::get('/usuario/conversaciones', [InboxUsuario::class, 'getMensajesPorUsuario']);
 
 
+        Route::get('/usuario/monedas', [UsuarioMonedaCarteraController::class, 'obtenerMonedas']);
 
+        Route::post('/usuario/manipular-monedas', [UsuarioMonedaCarteraController::class, 'manipularMonedas']);
 
 
         //::rol voluntario
