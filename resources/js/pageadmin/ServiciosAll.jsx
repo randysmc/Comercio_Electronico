@@ -37,7 +37,10 @@ const ServiciosAll = () => {
                                         <li key={servicio.id} className="list-group-item">
                                             <div className="row">
                                                 <div className="col-md-3">
-                                                    {/* Aquí puedes colocar la imagen del servicio si tienes una */}
+                                                    {/* Aquí mostramos la imagen del servicio si tenemos la URL de la imagen */}
+                                                    {servicio.urlfoto && (
+                                                        <img src={servicio.urlfoto} alt={servicio.nombre} style={{ maxWidth: '100%' }} />
+                                                    )}
                                                 </div>
                                                 <div className="col-md-9">
                                                     <h5>{servicio.nombre}</h5>

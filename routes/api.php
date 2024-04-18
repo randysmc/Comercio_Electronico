@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Admin\ProductoController;
 use App\Http\Controllers\Api\Admin\ServicioController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Admin\TransaccionController;
+use App\Http\Controllers\Api\Admin\ReporteController;
 
 use App\Http\Controllers\Api\FrontController;
 use App\Http\Controllers\Api\AuthController;
@@ -65,6 +66,9 @@ Route::prefix('v1')->group(function () {
         Route::put('/admin/producto-no-aprobado/{id}', [ProductoController::class, 'aprobarProducto']);
         Route::apiResource('/admin/servicio', ServicioController::class);
         Route::apiResource('/admin/transaccion', TransaccionController::class);
+        Route::get('/admin/reporte-usuarios',[ReporteController::class, 'reporteUsuarios'] );
+        Route::get('/admin/reporte-productos', [ReporteController::class, 'reporteProductos']);
+
 
         //User
 

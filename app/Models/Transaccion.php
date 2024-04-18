@@ -30,4 +30,9 @@ class Transaccion extends Model
     {
         return $this->belongsTo(Producto::class, 'id_producto');
     }
+
+    public function reportes()
+    {
+        return $this->hasMany(Reporte::class);
+    }
 }

@@ -29,4 +29,9 @@ class Trueque extends Model
     {
         return $this->belongsTo(Servicio::class, 'id_servicio');
     }
+
+    public function reportes()
+    {
+        return $this->hasMany(Reporte::class);
+    }
 }

@@ -16,4 +16,9 @@ class Moneda extends Model
     {
         return $this->hasMany(MonedaCartera::class);
     }
+
+    public function reportes()
+    {
+        return $this->hasMany(Reporte::class);
+    }
 }

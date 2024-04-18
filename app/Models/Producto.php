@@ -27,4 +27,9 @@ class Producto extends Model
     {
         return $this->belongsTo(Moneda::class);
     }
+
+    public function reportes()
+    {
+        return $this->hasMany(Reporte::class);
+    }
 }
