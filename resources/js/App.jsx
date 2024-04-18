@@ -23,7 +23,7 @@ import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate, Transacci
 import {PanelVendedor, PerfilVendedor, 
         TodosLosProductos, MisProductos, ProducStore, ProductoSeleccionado, CompraProducto, ProductosComprados, ProductoUpdate,
         TodosLosServicios, MisServicios, ServicioStore, ServicioSeleccionado, Voluntariado,
-        InboxAll, InboxStore} from "./pagevendedor"
+        InboxAll, InboxStore, Transferencia} from "./pagevendedor"
 
 import ProductosAll from "./pageadmin/ProductosAll";
 import ProductStore from "./pagevendedor/ProductStore";
@@ -89,6 +89,7 @@ const App = () => {
 
                             <Route path="inbox" element={<InboxAll/>}></Route>
                             <Route path="inbox/create" element={<InboxStore/>}></Route>
+                            <Route path="transferencia" element={<Transferencia/>}></Route>
 
                             
                         </Route>

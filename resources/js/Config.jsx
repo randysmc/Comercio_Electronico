@@ -97,6 +97,11 @@ export default {
     getInboxConversacion:(token)=>axiosWithAuth(token).get(`/usuario/conversaciones`),
 
 
+    //Monedas
+    getMonedasCartera:(token)=>axiosWithAuth(token).get(`/usuario/monedas`),
+    getManipularMonedas:(token, data)=>axiosWithAuth(token).post(`/usuario/manipular-monedas`, data),
+
+
 
 
 
