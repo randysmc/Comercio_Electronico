@@ -68,6 +68,10 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('/admin/transaccion', TransaccionController::class);
         Route::get('/admin/reporte-usuarios',[ReporteController::class, 'reporteUsuarios'] );
         Route::get('/admin/reporte-productos', [ReporteController::class, 'reporteProductos']);
+        Route::get('/admin/transaccion-dinero', [TransaccionController::class, 'totalDineroPorUsuario']);
+        Route::get('/admin/transaccion-productos-comprados', [TransaccionController::class, 'cantidadProductosCompradosPorUsuario']);
+        Route::get('/admin/transaccion-categorias', [TransaccionController::class, 'categoriasMasRepetidas']);
+        #Route::get('/admin/reporte-productos', [TransaccionController::class, 'reporteProductos']);
 
 
         //User
