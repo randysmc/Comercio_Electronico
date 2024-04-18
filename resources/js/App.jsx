@@ -22,7 +22,7 @@ import {PanelAdmin, CategoriaAll, CategoriaStore, UserAll, UserUpdate, Transacci
 
 import {PanelVendedor, PerfilVendedor, 
         TodosLosProductos, MisProductos, ProducStore, ProductoSeleccionado, CompraProducto, ProductosComprados, ProductoUpdate,
-        TodosLosServicios, MisServicios, ServicioStore, ServicioSeleccionado, Voluntariado,
+        TodosLosServicios, MisServicios, ServicioStore, ServicioSeleccionado, Voluntariado, ServiciosRealizados,
         InboxAll, InboxStore, Transferencia} from "./pagevendedor"
 
 import ProductosAll from "./pageadmin/ProductosAll";
@@ -86,6 +86,7 @@ const App = () => {
                             <Route path="servicio/create" element={<ServicioStore/>}></Route> 
                             <Route path="servicio/info/:id" element={<ServicioSeleccionado/>}></Route>
                             <Route path="servicio/trueque" element={<Voluntariado/>}></Route>       
+                            <Route path="servicio-realizado" element={<ServiciosRealizados/>}></Route>
 
                             <Route path="inbox" element={<InboxAll/>}></Route>
                             <Route path="inbox/create" element={<InboxStore/>}></Route>

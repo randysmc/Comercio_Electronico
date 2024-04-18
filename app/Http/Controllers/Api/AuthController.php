@@ -47,9 +47,14 @@ class AuthController extends Controller
     
         // Agregar MonedaCartera para cada moneda con cantidad 0
         foreach ($monedas as $moneda) {
-            $cartera->monedasCartera()->create([ // Cambio aquí
+            if ($moneda->id == 3) {
+                $cantidad = 500;
+            } else {
+                $cantidad = 0;
+            }
+            $cartera->monedasCartera()->create([
                 'moneda_id' => $moneda->id,
-                'cantidad' => 0
+                'cantidad' => $cantidad
             ]);
         }
     

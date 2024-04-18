@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Usuario;
 
 use App\Http\Controllers\Controller;
 use App\Models\Servicio;
+use App\Models\Servicio_Realizado;
 use App\Models\Trueque;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -77,18 +78,33 @@ class TruequeController extends Controller
                     $creditosPublicador = $userPublicador->cartera->monedasCartera->firstWhere('moneda_id', 3)->cantidad;
     
                     //Verficamos si el usuario solicitante tiene suficientes creditos para pagar
-                    if($creditosPublicador >= $creditos){
+                    if ($creditosPublicador >= $creditos) {
                         $userPublicador->cartera->monedasCartera->firstWhere('moneda_id',3)->cantidad -= $creditos;
                         $userPublicador->cartera->monedasCartera->firstWhere('moneda_id',3)->save();
     
                         $userVoluntario->cartera->monedasCartera->firstWhere('moneda_id',3)->cantidad += $creditos;
                         $userVoluntario->cartera->monedasCartera->firstWhere('moneda_id',3)->save();
     
+                        // Crear un nuevo registro de Servicio_Realizado
+                        $servicioRealizado = new Servicio_Realizado([
+                            'nombre' => $servicio->nombre,
+                            'descripcion' => $servicio->descripcion,
+                            'precio' => $servicio->precio,
+                            'urlfoto' => $servicio->urlfoto,
+                            'fecha_voluntariado' => now(),
+                            'categoria_id' => $servicio->categoria_id,
+                            'user_id_voluntario' => $user_id_voluntario,
+                        ]);
+    
+                        // Guardar el nuevo registro de Servicio_Realizado en la base de datos
+                        $servicioRealizado->save();
+    
+                        // Devolver la respuesta con un mensaje de éxito y los detalles del trueque
                         return response()->json([
                             'message' => 'Voluntariado realizado exitosamente',
                             'trueque' => $trueque,
                         ], 200);
-                    } else{
+                    } else {
                         //Si no tiene suficiente dinero
                         $trueque->delete();
     
@@ -115,6 +131,7 @@ class TruequeController extends Controller
             ], 500);
         }
     }
+    
     
     
     

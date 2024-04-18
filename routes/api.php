@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\Usuario\ProductoController as ProductoUsuario;
 use App\Http\Controllers\Api\Usuario\ProductoCompraController as ProductoCompraUsuario;
 use App\Http\Controllers\Api\Usuario\CategoriaController as CategoriaUsuario;
 use App\Http\Controllers\Api\Usuario\ServicioController as ServicioUsuario;
+use App\Http\Controllers\Api\Usuario\ServicioRealizadoController as ServicioRealizadoUsuario;
 use App\Http\Controllers\Api\Usuario\UserController as UserUsuario;
 use App\Http\Controllers\Api\Usuario\TransaccionController as TransaccionUsuario;
 use App\Http\Controllers\Api\Usuario\TruequeController as TruequeUsuario;
@@ -101,7 +102,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/usuario/servicios', [ServicioUsuario::class, 'userServices']);
         Route::apiResource('/usuario/trueque', TruequeUsuario::class);
         Route::put('servicio/{id}/update-disponible', [ServicioUsuario::class, 'updateDisponible']);
-
+        Route::apiResource('/usuario/servicio-realizado', ServicioRealizadoUsuario::class);
         Route::apiResource('/usuario/inbox', InboxUsuario::class);
         Route::get('/usuario/conversaciones', [InboxUsuario::class, 'getMensajesPorUsuario']);
 

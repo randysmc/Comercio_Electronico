@@ -15,11 +15,12 @@ import Voluntariado from './Voluntariado'
 import InboxAll from './InboxAll'
 import InboxStore from './InboxStore'
 import Transferencia from './Transferencia'
+import ServiciosRealizados from './ServiciosRealizados'
 
 
 
 export {PanelVendedor, PerfilVendedor, 
     TodosLosProductos, MisProductos, ProducStore, ProductoSeleccionado, CompraProducto, ProductosComprados, ProductoUpdate,
-    TodosLosServicios, MisServicios, ServicioStore, ServicioSeleccionado, Voluntariado,
+    TodosLosServicios, MisServicios, ServicioStore, ServicioSeleccionado, Voluntariado, ServiciosRealizados,
     InboxAll, InboxStore, Transferencia
 };

@@ -57,28 +57,27 @@ function Transferencia() {
     };
 
     return (
-        <div className="container bg-light">
+        <div className="container bg-light" style={{ padding: "20px", borderRadius: "10px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
             <div className="row">
                 <SidebarVendedor />
                 <div className="col-sm-9 mt-3 mb-3">
-                    <div>
+                    <div style={{ marginBottom: "20px" }}>
                         <h2>Billetera de {getUser().name}</h2>
-                        <ul>
+                        <ul style={{ listStyleType: "none", padding: 0 }}>
                             {billetera.map((item) => (
-                                <li key={item.id}>
-                                    <p>Id: {item.moneda.id}</p>
-                                    <p>Moneda: {item.moneda.nombre}</p>
-                                    <p>Cantidad: {item.cantidad}</p>
+                                <li key={item.id} style={{ marginBottom: "10px", background: "#f9f9f9", padding: "10px", borderRadius: "5px", boxShadow: "0 0 5px rgba(0, 0, 0, 0.1)" }}>
+                                    <p><strong>Moneda:</strong> {item.moneda.nombre}</p>
+                                    <p><strong>Cantidad:</strong> {item.cantidad}</p>
                                 </li>
                             ))}
                         </ul>
                     </div>
-                    <div>
-                        <h2>Transferencia de Monedas</h2>
+                    <div style={{ background: "#f0f0f0", padding: "20px", borderRadius: "10px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
+                        <h2 style={{ marginBottom: "20px" }}>Transferencia de Monedas</h2>
                         <form onSubmit={handleSubmit}>
-                            <label>
+                            <label style={{ marginBottom: "10px", display: "block" }}>
                                 Moneda a aumentar:
-                                <select name="id_moneda_aumentar" value={formData.id_moneda_aumentar} onChange={handleChange}>
+                                <select name="id_moneda_aumentar" value={formData.id_moneda_aumentar} onChange={handleChange} style={{ marginLeft: "10px" }}>
                                     <option value="">Seleccionar</option>
                                     {billetera.map((item) => (
                                         <option key={item.moneda.id} value={item.moneda.id}>{item.moneda.nombre}</option>
@@ -86,9 +85,9 @@ function Transferencia() {
                                 </select>
                             </label>
                             <br />
-                            <label>
+                            <label style={{ marginBottom: "10px", display: "block" }}>
                                 Moneda a disminuir:
-                                <select name="id_moneda_disminuir" value={formData.id_moneda_disminuir} onChange={handleChange}>
+                                <select name="id_moneda_disminuir" value={formData.id_moneda_disminuir} onChange={handleChange} style={{ marginLeft: "10px" }}>
                                     <option value="">Seleccionar</option>
                                     {billetera.map((item) => (
                                         <option key={item.moneda.id} value={item.moneda.id}>{item.moneda.nombre}</option>
@@ -96,14 +95,14 @@ function Transferencia() {
                                 </select>
                             </label>
                             <br />
-                            <label>
+                            <label style={{ marginBottom: "10px", display: "block" }}>
                                 Cantidad:
-                                <input type="number" name="cantidad" value={formData.cantidad} onChange={handleChange} />
+                                <input type="number" name="cantidad" value={formData.cantidad} onChange={handleChange} style={{ marginLeft: "10px" }} />
                             </label>
                             <br />
-                            <button type="submit">Transferir</button>
+                            <button type="submit" style={{ background: "#007bff", color: "#fff", border: "none", padding: "10px 20px", borderRadius: "5px", cursor: "pointer" }}>Transferir</button>
                         </form>
-                        {error && <p>Error: {error.message}</p>}
+                        {error && <p style={{ color: "red", marginTop: "10px" }}>Error: {error.message}</p>}
                     </div>
                 </div>
             </div>
